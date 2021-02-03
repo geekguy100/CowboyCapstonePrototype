@@ -9,6 +9,8 @@
 *****************************************************************************/
 using UnityEngine;
 
+//!!!!! OBSOLETE. THE GAME MANAGER NOW SUBSCRIBES ITSELF TO THE EVENT !!!!!!
+
 [RequireComponent(typeof(Health))]
 public class PlayerHealthManager : MonoBehaviour
 {
@@ -16,12 +18,13 @@ public class PlayerHealthManager : MonoBehaviour
 
     private void Awake()
     {
+        //gm = FindObjectOfType<GameManager>();
         playerHealth = GetComponent<Health>();
-        playerHealth.OnDeath += GameManager.Instance.OnPlayerDeath;
+        //playerHealth.OnDeath += gm.OnPlayerDeath;
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
-        playerHealth.OnDeath -= GameManager.Instance.OnPlayerDeath;
+        //playerHealth.OnDeath -= gm.OnPlayerDeath;
     }
 }
