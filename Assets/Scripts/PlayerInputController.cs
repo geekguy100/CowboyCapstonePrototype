@@ -34,6 +34,15 @@ public class PlayerInputController : MonoBehaviour
         if (currentStamina > 0)
             characterMovement.Move(dir);
 
+        HandleStaminaChanges(dir);
+    }
+
+    /// <summary>
+    /// Handles managing player's stamina.
+    /// </summary>
+    /// <param name="dir">Player's movement input from Input.GetAxis("").</param>
+    private void HandleStaminaChanges(Vector3 dir)
+    {
         //If the player is moving, decrease stamina.
         //If they are standing still, increase stamina.
         if (currentStamina > 0 && dir != Vector3.zero)
