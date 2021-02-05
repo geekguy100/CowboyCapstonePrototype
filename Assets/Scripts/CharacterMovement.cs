@@ -1,13 +1,17 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class CharacterMovement : MonoBehaviour
 {
     [SerializeField]
     private float maxMovementSpeed = 5f;
     private float currentMovementSpeed;
 
+    private Rigidbody2D rb;
+
     private void Awake()
     {
+        rb = GetComponent<Rigidbody2D>();
         currentMovementSpeed = maxMovementSpeed;
     }
 
@@ -15,8 +19,8 @@ public class CharacterMovement : MonoBehaviour
     /// Moves the character in a given direction.
     /// </summary>
     /// <param name="direction">The direction to move the character.</param>
-    public void Move(Vector3 direction)
+    public void Move(Vector2 direction)
     {
-        transform.position += direction * currentMovementSpeed * Time.deltaTime;
+        rb.velocity = direction * currentMovementSpeed;
     }
 }

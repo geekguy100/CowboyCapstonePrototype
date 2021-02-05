@@ -3,6 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterMovement))]
 public class PlayerInputController : MonoBehaviour
 {
+    [Header("Stamina")]
     [SerializeField] private float maxStamina = 10f;
                      private float currentStamina;
     [SerializeField] private float staminaDecreaseMultiplier = 1f;
@@ -23,9 +24,10 @@ public class PlayerInputController : MonoBehaviour
         currentStamina = maxStamina;
     }
 
-    private void Update()
+    //Moving the character in FixedUpdate since it relies on Rigidbody2D.MovePosition().
+    private void FixedUpdate()
     {
-        //Get input from keyboard/controller, and move the player in that direction.
+        //Get input axes, and move the player in that direction.
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
         Vector3 dir = new Vector3(h, v);
@@ -33,6 +35,8 @@ public class PlayerInputController : MonoBehaviour
         //If the player has the stamina to move, do so.
         if (currentStamina > 0)
             characterMovement.Move(dir);
+        else
+            characterMovement.Move(Vector2.zero);
 
         HandleStaminaChanges(dir);
     }

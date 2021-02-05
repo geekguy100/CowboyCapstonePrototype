@@ -11,7 +11,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Obstacle
   - 
   - 
   - 
@@ -38,6 +38,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Floor
+    uniqueID: 204261655
+    locked: 0
+  - name: Cover
+    uniqueID: 383547305
+    locked: 0
+  - name: Character
+    uniqueID: 791815545
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
