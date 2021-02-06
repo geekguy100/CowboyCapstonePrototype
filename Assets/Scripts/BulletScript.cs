@@ -5,6 +5,7 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour
 {
     //Bullet Speed
+    public GameObject origin; 
     public float speed = 8;
     public float bulletDeathTimer = 10;
     

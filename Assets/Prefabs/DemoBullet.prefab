@@ -44,7 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aed0b02adc7c194fa628e85e8f655b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originOfBullet: {fileID: 0}
+  origin: {fileID: 0}
+  speed: 8
+  bulletDeathTimer: 5
 --- !u!212 &8328358008188989642
 SpriteRenderer:
   m_ObjectHideFlags: 0
