@@ -1194,7 +1194,7 @@ MonoBehaviour:
   - {fileID: 76448349}
   - {fileID: 1295810255}
   - {fileID: 634661005}
-  minPointDistance: 5
+  minPointDistance: 1
 --- !u!1 &1295810254
 GameObject:
   m_ObjectHideFlags: 0
@@ -3207,7 +3207,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2003360418
 MonoBehaviour:
   m_ObjectHideFlags: 0
