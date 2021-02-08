@@ -5,6 +5,7 @@ public class CharacterMovement : MonoBehaviour
 {
     [SerializeField]
     private float maxMovementSpeed = 5f;
+    [SerializeField]
     private float currentMovementSpeed;
 
     private Rigidbody2D rb;

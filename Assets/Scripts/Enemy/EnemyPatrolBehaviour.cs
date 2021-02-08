@@ -3,19 +3,17 @@
 // Author :            Kyle Grenier
 // Creation Date :     #CREATIONDATE#
 //
-// Brief Description : ADD BRIEF DESCRIPTION OF THE FILE HERE
+// Brief Description : Enemy patrols from point to point 
 *****************************************************************************/
 using UnityEngine;
+using System.Collections;
 
-public class EnemyPatrolBehaviour : MonoBehaviour
+public class EnemyPatrolBehaviour : EnemyBehaviour
 {
-    void Start()
-    {
-        
-    }
+    [SerializeField] private ScriptableObject patrolSettings;
 
-    void Update()
+    protected override void PerformAction()
     {
-        
+        throw new System.NotImplementedException();
     }
 }
