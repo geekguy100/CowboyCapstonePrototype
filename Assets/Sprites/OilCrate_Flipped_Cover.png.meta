@@ -1,7 +1,13 @@
 fileFormatVersion: 2
 guid: 2914d8c4461cb1249966a15610388132
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -6719735617773940501
+    second: OilCrate_Flipped_Cover_0
+  - first:
+      213: -5098717960522025170
+    second: OilCrate_Flipped_Cover_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -41,14 +47,14 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 9
   spritePivot: {x: 0.34615386, y: -0}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -89,7 +95,59 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: OilCrate_Flipped_Cover_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 14
+        height: 21
+      alignment: 9
+      pivot: {x: 0.5714286, y: 0.2857143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 2, y: -10.5}
+        - {x: -5, y: -6.5}
+        - {x: 7, y: -0.5}
+        - {x: 7, y: -7.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: be05b0eee04beb2a0800000000000000
+      internalID: -6719735617773940501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OilCrate_Flipped_Cover_1
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 0
+        width: 12
+        height: 21
+      alignment: 9
+      pivot: {x: 0.16666667, y: 0.47619048}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -6, y: 10.5}
+        - {x: -6, y: -9.5}
+        - {x: -4, y: -9.5}
+        - {x: 6, y: -4.5}
+        - {x: 6, y: 8.5}
+        - {x: 2, y: 10.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e273e217707bd39b0800000000000000
+      internalID: -5098717960522025170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BaseShooting : MonoBehaviour
 {
-    private float scaleOfAimingLine = 5f;
+    private float scaleOfAimingLine = 2.5f;
     private float defaultHeightOfAimSprite = .1f;
     private SpriteRenderer spr;
     [Tooltip("Where to spawn bullet on player")]
@@ -91,10 +91,10 @@ public class BaseShooting : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         //adjust rotation of angle by perspective
-        rotationOfAim = Quaternion.AngleAxis(aimPerspectiveAngle, Vector3.right);
+        //rotationOfAim = Quaternion.AngleAxis(aimPerspectiveAngle, Vector3.right);
 
         //set the rotation of the aim
-        rotationOfAim *= Quaternion.AngleAxis(angle, Vector3.forward);
+        rotationOfAim = Quaternion.AngleAxis(angle, Vector3.forward);
 
 
 
