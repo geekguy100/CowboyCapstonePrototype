@@ -64,12 +64,22 @@ public class Health : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetButtonDown("Jump"))
+            TakeDamage(1);
+    }
+
     /// <summary>
     /// Run the OnDeath event if anything is subscribed to it.
     /// </summary>
     private void Die()
     {
-        OnDeath?.Invoke();
+        if (!GameManager.GameOver)
+        {
+            OnDeath?.Invoke();
+            Destroy(gameObject);
+        }
     }
 
 }

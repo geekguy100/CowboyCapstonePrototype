@@ -3,25 +3,43 @@
 // Author :            Kyle Grenier
 // Creation Date :     02/02/2020
 //
-// Brief Description : Class to manage game state.
+// Brief Description : Class to manage game state. Delegates other background tasks (UI, etc.) to their respective classes.
 *****************************************************************************/
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
+[RequireComponent(typeof(UIManager))]
 public class GameManager : MonoBehaviour
 {
     //Reference to the player's health.
     private Health playerHealth;
+
+    //The UIManager that will handle updating game state UI.
+    private UIManager uiManager;
+
+    //Is the game over?
+    private static bool gameOver = false;
+    public static bool GameOver { get { return gameOver; } }
 
     void Awake()
     {
         //Subscribing to the OnDeath event, so OnPlayerDeath will run when the player dies.
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
         playerHealth.OnDeath += OnPlayerDeath;
+
+        //Make sure OnGameWin runs when the level is completed.
+        Level.OnLevelComplete += OnGameWin;
+
+        uiManager = GetComponent<UIManager>();
+
+        gameOver = false;
     }
 
     void OnDestroy()
     {
         playerHealth.OnDeath -= OnPlayerDeath;
+        Level.OnLevelComplete -= OnGameWin;
     }
 
     /// <summary>
@@ -29,6 +47,44 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void OnPlayerDeath()
     {
+        if (gameOver) return;
+        gameOver = true;
+        Destroy(playerHealth.gameObject); //Destroy the player game object.
         print("The player died oh no!!");
+        uiManager.OnGameOver();
+        StartCoroutine(LoadSceneAfterTime(4f,0));
+        //TODO: reload the current scene.
+    }
+
+    /// <summary>
+    /// What occurs when the game is won.
+    /// </summary>
+    private void OnGameWin()
+    {
+        if (gameOver) return;
+        gameOver = true;
+        print("Game is over!");
+        uiManager.OnGameWin();
+        StartCoroutine(LoadSceneAfterTime(4f,1));
+    }
+
+    /// <summary>
+    /// Loads a scene after a given amount of time.
+    /// </summary>
+    /// <param name="t">The time in seconds.</param>
+    /// <param name="index">The build index of the scene to load..</param>
+    private IEnumerator LoadSceneAfterTime(float t, int index)
+    {
+        yield return new WaitForSeconds(t);
+        SceneManager.LoadScene(index);
+    }
+
+    private void Update()
+    {
+        //Load the menu on ESC key press.
+        if (Input.GetButtonDown("Cancel"))
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }
