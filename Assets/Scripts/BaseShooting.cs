@@ -100,13 +100,11 @@ public class BaseShooting : MonoBehaviour
         //detect inputs
         DetectInputs();
 
-
-
         //set the rotation of aim line
         SetAimRotation();
 
-        //set the distance of the aim lines
-        SetDistanceOfAim();
+        //set the distance of the aim lines //NOT NECESSARY FOR UPDATE
+        //SetDistanceOfAim();
 
         //if recoil is occuring
         if (recoilTime > 0)
@@ -126,51 +124,75 @@ public class BaseShooting : MonoBehaviour
             //check if mouse input
             if (Input.GetMouseButtonDown(0) && bulletCount > 0 || Input.GetAxis("PrimaryAttack") < -.01f && bulletCount > 0)
             {
+                //increase recoil time
                 recoilTime += recoilAmount;
+
+                //launch bullet
                 LaunchBullet();
+
+                //remove bullet
                 bulletCount--;
+
+                //wind timer for pause between shots
                 shotPause = maxShotPause;
-
             }
-
         }
         else if (shotPause > 0)
         {
+            //deduct time between pause
             shotPause -= Time.deltaTime;
         }
         else
         {
+            //set pause to zero if below zero
             shotPause = 0;
         }
 
-
+        //determine if reload needs to occur
         if (bulletCount == 0 || Input.GetKeyDown(KeyCode.R) && bulletCount < maxBulletCount || reloading)
         {
+            //check if reloading is occuring
             if (reloading == false)
             {
+                //set reloading to occuring
                 reloading = true;
+
+                //set reloading timer
                 reloadTime = reloadTimeMax;
             }
             else
             {
+                //deduct time
                 reloadTime -= Time.deltaTime;
+                //if time is up
                 if (reloadTime < 0)
                 {
+                    //set timer to zero
                     reloadTime = 0;
+
+                    //reset the amount of bullets in gun
                     bulletCount = maxBulletCount;
+
+                    //set reloading to false
                     reloading = false;
                 }
             }
         }
 
+        //adjust the bloom ui
         AdjustBloom();
+
+        //update the colors and sizes of the aim lines
         UpdateAimLines();
     }
 
+    //set the rotation of the players aim
     private void SetAimRotation()
     {
+        //variable to hold the direction of player aim
         Vector2 direction;
 
+        //determine if keyboard/mouse or gamepad
         if (gamePadInput == true)
         {
             //obtain the position to point aim at
@@ -202,6 +224,7 @@ public class BaseShooting : MonoBehaviour
         //get position of mouse in pixels
         Vector2 position = Input.mousePosition;
 
+        //if no gamepad is being used
         if (!gamePadInput)
         {
             //transfer pixel location to real world location
@@ -212,9 +235,9 @@ public class BaseShooting : MonoBehaviour
         }
         else
         {
+            //if gamepad is being used set the rotation to nothing
             position = new Vector2();
         }
-
 
         //return position to be used
         return position;
@@ -223,27 +246,34 @@ public class BaseShooting : MonoBehaviour
     //Will use this later to accomplish joystick aiming
     public Vector2 GetJoystickAxis()
     {
+        //adjust the rotationial input
         var angH = Input.GetAxis("RightHorizontal") * 60;
         var angV = Input.GetAxis("RightVertical") * 45;
 
         //if no input return a more appealing location
-        if(angH == 0 && angV == 0)
+        if (angH == 0 && angV == 0)
         {
             return (Vector2)transform.position;
         }
 
+        //return the angle of the joystick input
         return new Vector2(-angV, -angH);
     }
 
+    //fires a bullet
     private void LaunchBullet()
     {
+        //create bullet // save object data
         GameObject bullet = Instantiate(Bullet, new Vector2(transform.position.x, transform.position.y + bulletSpawnOffset), GetBulletAngle());
-        bullet.GetComponent<BulletScript>().origin = gameObject;
+
+        //set the origin in bulletscript
+        bullet.GetComponent<BulletScript>().origin = this.gameObject;
     }
 
     //gets a bullet angle based on bloomvalue
     private Quaternion GetBulletAngle()
     {
+        //get the rotation of player angle
         Quaternion ang = rotationOfAim;
 
         //get the adjustment value
@@ -252,6 +282,7 @@ public class BaseShooting : MonoBehaviour
         //set the rotation of the shot
         ang *= Quaternion.AngleAxis(adjVal, Vector3.forward);
 
+        //return the angle
         return ang;
     }
 
@@ -264,61 +295,89 @@ public class BaseShooting : MonoBehaviour
         ral.size = new Vector2(scaleOfBloomLines, defaultHeightOfAimSprite);
     }
 
-
+    //calculate the bloom
     private void AdjustBloom()
     {
-
+        //calculate the bloom values
         bloomValue = recoilTime * bloomMod;
 
+        //if the value is too large reduce it
         if (recoilTime > maximumBloom)
         {
             recoilTime = maximumBloom;
         }
-
-
     }
 
+    //update the aim lines to match the bloom values
     private void UpdateAimLines()
     {
+        //obtain the rotation of player aim
         Quaternion adj = rotationOfAim;
+
+        //calculate rotation of left aim line
         adj *= Quaternion.AngleAxis(bloomValue, Vector3.forward);
+
+        //rotate left aim line
         leftAimLine.transform.rotation = adj;
 
+        //reset rotation
         adj = rotationOfAim;
+
+        //calculate rotation of right aim line
         adj *= Quaternion.AngleAxis(-bloomValue, Vector3.forward);
+
+        //rotate right aim line
         rightAimLine.transform.rotation = adj;
 
+        //determie a modifier value to work with bloomvalue
         float modValue = .01f * maximumBloom;
 
+        //calculate a value for the red value
         float tempValR = modValue * bloomValue;
-        float tempValG = 1 - modValue * bloomValue;
+
+        //calcultes a value for the green value // NOT CURRENTLY USED
+        //float tempValG = 1 - modValue * bloomValue;
+
+        //produce a color
         Color tempCol = new Color(tempValR, 1, tempValR, aimLineTransparency);
 
+        //set colors
+        lal.color = tempCol;
+        ral.color = tempCol;
+        spr.color = tempCol;
 
-        if (bloomValue > 0)
+
+        //change order of aim line sprites
+        /*
+        if(transform.rotation.z < 0)
         {
-            lal.color = tempCol;
-            ral.color = tempCol;
-            spr.color = tempCol;
+            lal.sortingOrder = 1;
+            ral.sortingOrder = 1;
+            spr.sortingOrder = 1;
         }
         else
         {
-            lal.color = tempCol;
-            ral.color = tempCol;
-            spr.color = tempCol;
+            lal.sortingOrder = -1;
+            ral.sortingOrder = -1;
+            spr.sortingOrder = -1;
         }
+        */
     }
 
+    //detect what inputs the player is using
     private void DetectInputs()
     {
+        //determine if joystick in use
         if (GetJoystickAxis() != (Vector2)transform.position)
         {
+            //set input to gamepad
             gamePadInput = true;
         }
-        
-        if(Input.GetMouseButtonDown(0))
-        {
 
+        //determine if mouse click
+        if (Input.GetMouseButtonDown(0))
+        {
+            //set input to keyboard and mouse
             gamePadInput = false;
         }
     }
