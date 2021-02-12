@@ -17,6 +17,12 @@ public class PlaytestEnemyPatrol : PlaytestEnemyBehaviour
 
     protected override void PerformAction()
     {
+        if (points.Length < 1)
+        {
+            Debug.LogWarning(gameObject.name + " wants to walk a path but no path points have been assigned!");
+            return;
+        }
+
         StartCoroutine("WalkRoute");
     }
 
