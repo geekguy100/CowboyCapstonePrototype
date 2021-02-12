@@ -100,6 +100,11 @@ public class BaseShooting : MonoBehaviour
         SetDistanceOfAim();
 
 
+
+    }
+
+    public void Start()
+    {
         bcu.UpdateCount(extraBulletCount);
     }
 
