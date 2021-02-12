@@ -19,6 +19,9 @@ public class EnemyShoot : MonoBehaviour
     [Tooltip("The maximum wait time for enemy to shoot.")]
     [SerializeField] private float maxWaitTime = 5f;
 
+    [Tooltip("The miniumum distance the enemy needs to be from the player before shooting.")]
+    [SerializeField] private float minDistance = 10f;
+
     private Transform player;
 
     private void Awake()
@@ -35,6 +38,12 @@ public class EnemyShoot : MonoBehaviour
     {
         while(player != null)
         {
+            if (Vector2.Distance(transform.position, player.position) > minDistance)
+            {
+                yield return null;
+            }
+
+            print("Test");
             //Calculate an angle towards the player.
             Vector2 dir = (player.position - transform.position).normalized;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
