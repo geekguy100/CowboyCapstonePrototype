@@ -83,6 +83,7 @@ public class BaseShooting : MonoBehaviour
     private SpriteRenderer spr;
     public BulletUI bu;
     public BulletCountUI bcu;
+    private SpriteRenderer characterSPR;
 
     public void Awake()
     {
@@ -100,7 +101,7 @@ public class BaseShooting : MonoBehaviour
         SetDistanceOfAim();
 
 
-
+        characterSPR = gameObject.transform.parent.GetComponentInParent<SpriteRenderer>();
     }
 
     public void Start()
@@ -247,6 +248,20 @@ public class BaseShooting : MonoBehaviour
         //set the rotation of the aim
         transform.rotation = rotationOfAim;
 
+        UpdatePlayerRotation();
+
+    }
+
+    private void UpdatePlayerRotation()
+    {
+        if (rotationOfAim.w >= .7071068f)
+        {
+            characterSPR.flipX = true;
+        }
+        else
+        {
+            characterSPR.flipX = false;
+        }
     }
 
     // obtains the mouse position

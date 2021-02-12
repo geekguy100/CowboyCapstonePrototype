@@ -7,6 +7,7 @@ public class CharacterMovement : MonoBehaviour
     private float maxMovementSpeed = 5f;
     [SerializeField]
     private float currentMovementSpeed;
+    private SpriteRenderer spr;
 
     //Has the character's movement been modified from its default value?
     private bool modifiedSpeed = false;
@@ -18,6 +19,7 @@ public class CharacterMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         currentMovementSpeed = maxMovementSpeed;
+        spr =GetComponent<SpriteRenderer>();
     }
 
     /// <summary>
@@ -27,6 +29,8 @@ public class CharacterMovement : MonoBehaviour
     public void Move(Vector2 direction)
     {
         rb.velocity = direction * currentMovementSpeed;
+
+        UpdateSpriteFlip(direction.x);
     }
 
     /// <summary>
@@ -46,5 +50,17 @@ public class CharacterMovement : MonoBehaviour
     {
         modifiedSpeed = false;
         currentMovementSpeed = maxMovementSpeed;
+    }
+
+    private void UpdateSpriteFlip(float x)
+    {
+        if(x > 0)
+        {
+            spr.flipX = true;
+        }
+        else
+        {
+            spr.flipX = false;
+        }
     }
 }
