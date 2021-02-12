@@ -6,11 +6,12 @@ public class PlayerInputController : MonoBehaviour
     [Header("Stamina")]
     [SerializeField] private float maxStamina = 10f;
                      private float currentStamina;
-    [SerializeField] private float staminaDecreaseMultiplier = 1f;
-    [SerializeField] private float staminaIncreaseMultiplier = 1f;
+    [SerializeField] private float staminaDecreaseMultiplier = 1f; //How much faster stamina should decrease.
+    [SerializeField] private float staminaIncreaseMultiplier = 1f; //How much faster stamina should increase.
+    [SerializeField] private float movementReductionMultiplier = 0.5f; //How much slower the player moves when out of stamina.
 
-    [SerializeField] private float rechargeWaitTime = 2f;
-                     private float currentRechargeTime = 0f;
+    [SerializeField] private float rechargeWaitTime = 2f;          //How long the player must wait until stamina begins recharging.
+                     private float currentRechargeTime = 0f;       //The amount of time the player has spent waiting for stamina to begin recharging.
 
     private CharacterMovement characterMovement;
 
@@ -32,11 +33,13 @@ public class PlayerInputController : MonoBehaviour
         float v = Input.GetAxis("Vertical");
         Vector3 dir = new Vector3(h, v);
 
-        //If the player has the stamina to move, do so.
-        if (currentStamina > 0)
-            characterMovement.Move(dir);
-        else
-            characterMovement.Move(Vector2.zero);
+        //Player will walk slower when out of stamina.
+        if (currentStamina <= 0 && !characterMovement.ModifiedSpeed)
+            characterMovement.MultiplyMovementSpeed(movementReductionMultiplier);  
+
+        //Apply movement.
+        characterMovement.Move(dir);
+
 
         HandleStaminaChanges(dir);
     }
@@ -63,7 +66,14 @@ public class PlayerInputController : MonoBehaviour
             if (currentRechargeTime < rechargeWaitTime)
                 currentRechargeTime += Time.deltaTime;
             else //Once the recharge time is maxed, start increasing stamina.
+            {
                 IncreaseStamina();
+
+                //If the character is still moving at a modified speed, reset it to default speed.
+                //Since they have stamina, they can now move normally.
+                if (characterMovement.ModifiedSpeed)
+                    characterMovement.ResetMovementSpeed();
+            }
         }
     }
 

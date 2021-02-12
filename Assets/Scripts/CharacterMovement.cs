@@ -8,6 +8,10 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField]
     private float currentMovementSpeed;
 
+    //Has the character's movement been modified from its default value?
+    private bool modifiedSpeed = false;
+    public bool ModifiedSpeed { get { return modifiedSpeed; } }
+
     private Rigidbody2D rb;
 
     private void Awake()
@@ -23,5 +27,24 @@ public class CharacterMovement : MonoBehaviour
     public void Move(Vector2 direction)
     {
         rb.velocity = direction * currentMovementSpeed;
+    }
+
+    /// <summary>
+    /// Multiplies the currnet movement speed by the amount provided.
+    /// </summary>
+    /// <param name="amnt">The amount to multiply the current movement speed by.</param>
+    public void MultiplyMovementSpeed(float amnt)
+    {
+        modifiedSpeed = true;
+        currentMovementSpeed *= amnt;
+    }
+
+    /// <summary>
+    /// Resets movement speed to the default speed.
+    /// </summary>
+    public void ResetMovementSpeed()
+    {
+        modifiedSpeed = false;
+        currentMovementSpeed = maxMovementSpeed;
     }
 }
