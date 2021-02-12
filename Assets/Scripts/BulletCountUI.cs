@@ -7,6 +7,7 @@ using TMPro;
 public class BulletCountUI : MonoBehaviour
 {
     TextMeshProUGUI countText;
+    private int lastCount;
 
     void Awake()
     {
@@ -15,6 +16,12 @@ public class BulletCountUI : MonoBehaviour
 
     public void UpdateCount(int amount)
     {
+        lastCount = amount;
         countText.text = amount.ToString();
+    }
+
+    public void IncreaseCount(int amount)
+    {
+        countText.text = (amount + lastCount).ToString();
     }
 }
