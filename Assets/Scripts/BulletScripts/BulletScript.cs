@@ -16,6 +16,9 @@ public class BulletScript : MonoBehaviour
     [Tooltip("true = bullet was launched by player | false = bullet was launched by enemy")]
     public bool collisionDetectionMode = true;
 
+    [Tooltip("Damage done by bullet.")]
+    [SerializeField] private int damage = 1;
+
     private void Awake()
     {
         //set the position of the collider object
@@ -39,36 +42,49 @@ public class BulletScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        //detect enemies
-        if (collisionDetectionMode)
+        Health health = col.GetComponent<Health>();
+        if (health != null)
         {
-            switch (col.gameObject.tag)
-            {
-                case "Enemy":
-
-                    break;
-                    /*
-                case "Obstacle":
-                    //destroy self
-                    Destroy(gameObject);
-                    break;
-                    */
-            }
+            health.TakeDamage(damage);
+            Destroy(gameObject);
         }
-        else//detect player
+        else if (col.CompareTag("Obstacle"))
         {
-
-            switch (col.gameObject.tag)
-            {
-                case "Player":
-
-                    break;
-                case "Obstacle":
-                    //destroy self
-                    Destroy(gameObject);
-                    break;
-            }
+            //Uncomment below to allow bullets to destroy obstacles.
+            //Destroy(col.gameObject);
+            Destroy(gameObject);
         }
+
+        ////detect enemies
+        //if (collisionDetectionMode)
+        //{
+        //    switch (col.gameObject.tag)
+        //    {
+        //        case "Enemy":
+
+        //            break;
+        //            /*
+        //        case "Obstacle":
+        //            //destroy self
+        //            Destroy(gameObject);
+        //            break;
+        //            */
+        //    }
+        //}
+        //else//detect player
+        //{
+
+        //    switch (col.gameObject.tag)
+        //    {
+        //        case "Player":
+
+        //            break;
+        //        case "Obstacle":
+        //            //destroy self
+        //            Destroy(gameObject);
+        //            break;
+        //    }
+        //}
     }
 
     //timer that will remove bullet after a period of time

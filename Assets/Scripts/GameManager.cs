@@ -36,6 +36,12 @@ public class GameManager : MonoBehaviour
         gameOver = false;
     }
 
+    private void Start()
+    {
+        if (GameObject.FindGameObjectWithTag("Level") == null)
+            Debug.LogWarning("GameManager: Cannot find the Level game object.");
+    }
+
     void OnDestroy()
     {
         playerHealth.OnDeath -= OnPlayerDeath;
@@ -52,7 +58,7 @@ public class GameManager : MonoBehaviour
         Destroy(playerHealth.gameObject); //Destroy the player game object.
         print("The player died oh no!!");
         uiManager.OnGameOver();
-        StartCoroutine(LoadSceneAfterTime(4f,0));
+        StartCoroutine(LoadSceneAfterTime(4f,SceneManager.GetActiveScene().buildIndex));
         //TODO: reload the current scene.
     }
 

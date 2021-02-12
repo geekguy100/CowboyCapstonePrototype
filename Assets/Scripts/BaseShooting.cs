@@ -265,6 +265,8 @@ public class BaseShooting : MonoBehaviour
     {
         //create bullet // save object data
         GameObject bullet = Instantiate(Bullet, new Vector2(transform.position.x, transform.position.y + bulletSpawnOffset), GetBulletAngle());
+        Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponentInParent<Collider2D>()); //Igonre collison between our bullet and our body; we don't want to take damage from our own bullet!
+        //^^Added by Kyle
 
         //set the origin in bulletscript
         bullet.GetComponent<BulletScript>().origin = this.gameObject;
