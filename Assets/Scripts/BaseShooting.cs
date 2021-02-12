@@ -19,6 +19,9 @@ public class BaseShooting : MonoBehaviour
     [Tooltip("Current amount of bullets")]
     public int bulletCount = 6;
 
+    [Tooltip("current amount of bullets not in the gun")]
+    public int extraBulletCount = 36;
+
     [Tooltip("returns true when reloading")]
     public bool reloading = false;
 
@@ -78,6 +81,8 @@ public class BaseShooting : MonoBehaviour
     private SpriteRenderer lal;
     private SpriteRenderer ral;
     private SpriteRenderer spr;
+    public BulletUI bu;
+    public BulletCountUI bcu;
 
     public void Awake()
     {
@@ -93,6 +98,9 @@ public class BaseShooting : MonoBehaviour
 
         //set the initial distance that the aim line is drawn
         SetDistanceOfAim();
+
+
+        bcu.UpdateCount(extraBulletCount);
     }
 
     public void Update()
@@ -133,6 +141,9 @@ public class BaseShooting : MonoBehaviour
                 //remove bullet
                 bulletCount--;
 
+
+                bu.DecreaseBullets(1);
+
                 //wind timer for pause between shots
                 shotPause = maxShotPause;
             }
@@ -149,34 +160,11 @@ public class BaseShooting : MonoBehaviour
         }
 
         //determine if reload needs to occur
-        if (bulletCount == 0 || Input.GetKeyDown(KeyCode.R) && bulletCount < maxBulletCount || reloading)
+        if (bulletCount == 0 && extraBulletCount > 0 || Input.GetKeyDown(KeyCode.R) && bulletCount < maxBulletCount && extraBulletCount > 0 || reloading)
         {
-            //check if reloading is occuring
-            if (reloading == false)
-            {
-                //set reloading to occuring
-                reloading = true;
+            ReloadWeapon();
 
-                //set reloading timer
-                reloadTime = reloadTimeMax;
-            }
-            else
-            {
-                //deduct time
-                reloadTime -= Time.deltaTime;
-                //if time is up
-                if (reloadTime < 0)
-                {
-                    //set timer to zero
-                    reloadTime = 0;
-
-                    //reset the amount of bullets in gun
-                    bulletCount = maxBulletCount;
-
-                    //set reloading to false
-                    reloading = false;
-                }
-            }
+            bcu.UpdateCount(extraBulletCount);
         }
 
         //adjust the bloom ui
@@ -184,6 +172,44 @@ public class BaseShooting : MonoBehaviour
 
         //update the colors and sizes of the aim lines
         UpdateAimLines();
+    }
+
+    public void ReloadWeapon()
+    {
+        //check if reloading is occuring
+        if (reloading == false)
+        {
+            //set reloading to occuring
+            reloading = true;
+
+            //set reloading timer
+            reloadTime = reloadTimeMax;
+        }
+        else
+        {
+            //deduct time
+            reloadTime -= Time.deltaTime;
+            //if time is up
+            if (reloadTime < 0)
+            {
+                //reset the amount of bullets in gun
+                while (extraBulletCount > 0 && bulletCount < maxBulletCount)
+                {
+                    bulletCount++;
+                    extraBulletCount--;
+
+                    bu.IncreaseBullets(1);
+                }
+
+
+                //set timer to zero
+                reloadTime = 0;
+
+
+                //set reloading to false
+                reloading = false;
+            }
+        }
     }
 
     //set the rotation of the players aim
@@ -261,7 +287,7 @@ public class BaseShooting : MonoBehaviour
     }
 
     //fires a bullet
-    private void LaunchBullet()
+    public void LaunchBullet()
     {
         //create bullet // save object data
         GameObject bullet = Instantiate(Bullet, new Vector2(transform.position.x, transform.position.y + bulletSpawnOffset), GetBulletAngle());
@@ -270,6 +296,8 @@ public class BaseShooting : MonoBehaviour
 
         //set the origin in bulletscript
         bullet.GetComponent<BulletScript>().origin = this.gameObject;
+
+
     }
 
     //gets a bullet angle based on bloomvalue
