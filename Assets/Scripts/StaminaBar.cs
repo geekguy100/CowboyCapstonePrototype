@@ -26,8 +26,12 @@ public class StaminaBar : MonoBehaviour
     /// Change the stamina slider's value.
     /// </summary>
     /// <param name="v">The stamina's value.</param>
-    public void ChangeValue(float v)
+    /// <param name="v">The max stamina.</param>
+    public void ChangeValue(float v, float maxV)
     {
+        if (slider.maxValue != maxV)
+            slider.maxValue = maxV;
+
         slider.value = v;
     }
 }

@@ -43,7 +43,6 @@ public class EnemyShoot : MonoBehaviour
                 yield return null;
             }
 
-            print("Test");
             //Calculate an angle towards the player.
             Vector2 dir = (player.position - transform.position).normalized;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;

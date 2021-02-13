@@ -16,7 +16,7 @@ public class PlayerInputController : MonoBehaviour
     private CharacterMovement characterMovement;
 
     //Event for stamina changes.
-    public delegate void OnStaminaChangeHandler(float v);
+    public delegate void OnStaminaChangeHandler(float v, float mv);
     public event OnStaminaChangeHandler OnStaminaChange;
 
     private void Awake()
@@ -84,7 +84,7 @@ public class PlayerInputController : MonoBehaviour
     {
         //print("Stamina = " + currentStamina);
         currentStamina -= Time.deltaTime * staminaDecreaseMultiplier;
-        OnStaminaChange?.Invoke(currentStamina);
+        OnStaminaChange?.Invoke(currentStamina, maxStamina);
     }
 
     /// <summary>
@@ -93,6 +93,6 @@ public class PlayerInputController : MonoBehaviour
     private void IncreaseStamina()
     {
         currentStamina += Time.deltaTime * staminaIncreaseMultiplier;
-        OnStaminaChange?.Invoke(currentStamina);
+        OnStaminaChange?.Invoke(currentStamina, maxStamina);
     }
 }
