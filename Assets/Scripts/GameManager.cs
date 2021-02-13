@@ -55,11 +55,9 @@ public class GameManager : MonoBehaviour
     {
         if (gameOver) return;
         gameOver = true;
-        Destroy(playerHealth.gameObject); //Destroy the player game object.
-        print("The player died oh no!!");
+        //Destroy(playerHealth.gameObject); //Destroy the player game object.
         uiManager.OnGameOver();
-        StartCoroutine(LoadSceneAfterTime(4f,SceneManager.GetActiveScene().buildIndex));
-        //TODO: reload the current scene.
+        StartCoroutine(LoadSceneAfterTime(4f,SceneManager.GetActiveScene().buildIndex)); //TODO: reload the current scene.
     }
 
     /// <summary>
@@ -90,7 +88,7 @@ public class GameManager : MonoBehaviour
         //Load the menu on ESC key press.
         if (Input.GetButtonDown("Cancel"))
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
     }
 }

@@ -38,21 +38,22 @@ public class EnemyShoot : MonoBehaviour
     {
         while(player != null)
         {
-            if (Vector2.Distance(transform.position, player.position) > minDistance)
+            if (Vector2.Distance(transform.position, player.position) < minDistance)
             {
-                yield return null;
+                print(transform.parent.name);
+                //Calculate an angle towards the player.
+                Vector2 dir = (player.position - transform.position).normalized;
+                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+                Quaternion rotation = Quaternion.Euler(0, 0, angle - 90);
+
+                GameObject bullet = Instantiate(bulletPrefab, transform.position, rotation);
+                Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponentInParent<Collider2D>()); //Make sure to ignore the collision with the bullet so the enemy won't instantly die.
+
+                yield return new WaitForSeconds(Random.Range(minWaitTime, maxWaitTime));
             }
 
-            //Calculate an angle towards the player.
-            Vector2 dir = (player.position - transform.position).normalized;
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-
-            Quaternion rotation = Quaternion.Euler(0, 0, angle - 90);
-
-            GameObject bullet = Instantiate(bulletPrefab, transform.position, rotation);
-            Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponentInParent<Collider2D>()); //Make sure to ignore the collision with the bullet so the enemy won't instantly die.
-
-            yield return new WaitForSeconds(Random.Range(minWaitTime, maxWaitTime));
+            yield return null;
         }
     }
 }
