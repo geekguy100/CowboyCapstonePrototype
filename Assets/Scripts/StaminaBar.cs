@@ -13,7 +13,7 @@ public class StaminaBar : MonoBehaviour
         slider.value = slider.maxValue;
 
         //Get PlayerInputController and subscribe to the OnStaminaChange event.
-        playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInputController>();
+        playerInput = GameObject.Find("Player").GetComponent<PlayerInputController>();
         playerInput.OnStaminaChange += ChangeValue;
     }
 

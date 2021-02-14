@@ -26,11 +26,12 @@ public class GameManager : MonoBehaviour
     private static bool gameOver = false;
     public static bool GameOver { get { return gameOver; } }
 
-    void Awake()
+    private void Start()
     {
         //Subscribing to the OnDeath event, so OnPlayerDeath will run when the player dies.
-        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
+        playerHealth = GameObject.Find("Player").GetComponent<Health>();
         playerHealth.OnDeath += OnPlayerDeath;
+        print("FOUND PLAYER");
 
         //Make sure OnGameWin runs when the level is completed.
         Level.OnLevelComplete += OnGameWin;
@@ -38,11 +39,8 @@ public class GameManager : MonoBehaviour
         uiManager = GetComponent<UIManager>();
 
         gameOver = false;
-    }
 
-    private void Start()
-    {
-        if (GameObject.FindGameObjectWithTag("Level") == null)
+        if (GameObject.Find("Level") == null)
             Debug.LogWarning("GameManager: Cannot find the Level game object.");
     }
 

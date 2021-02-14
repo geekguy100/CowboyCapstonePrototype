@@ -27,7 +27,7 @@ public class PlayerHealthUI : MonoBehaviour, IHealthUI
         initialHeart = transform.GetChild(0).gameObject.GetComponent<Image>();
 
         //Subscribe to player's Health events.
-        Health playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
+        Health playerHealth = GameObject.Find("Player").GetComponent<Health>();
         playerHealth.OnTakeDamage += DecreaseHealth;
         playerHealth.OnHeal += IncreaseHealth;
     }
