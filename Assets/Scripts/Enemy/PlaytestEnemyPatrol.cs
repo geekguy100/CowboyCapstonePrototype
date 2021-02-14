@@ -1,9 +1,9 @@
 /*****************************************************************************
 // File Name :         PlaytestEnemyPatrol.cs
 // Author :            Kyle Grenier
-// Creation Date :     #CREATIONDATE#
+// Creation Date :     02/10/2021
 //
-// Brief Description : ADD BRIEF DESCRIPTION OF THE FILE HERE
+// Brief Description : Enemy travels from point to point over time.
 *****************************************************************************/
 using UnityEngine;
 using System.Collections;
@@ -19,7 +19,7 @@ public class PlaytestEnemyPatrol : PlaytestEnemyBehaviour
     {
         if (points.Length < 1)
         {
-            Debug.LogWarning(gameObject.name + " wants to walk a path but no path points have been assigned!");
+            Debug.Log(gameObject.name + " wants to walk a path but no path points have been assigned! Ignoring...");
             return;
         }
 

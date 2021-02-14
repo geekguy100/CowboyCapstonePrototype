@@ -12,6 +12,10 @@ using System.Collections;
 [RequireComponent(typeof(UIManager))]
 public class GameManager : MonoBehaviour
 {
+    //Scene build indices.
+    const int MENU_INDEX = 0;
+    const int GAMEPLAY_INDEX = 1;
+
     //Reference to the player's health.
     private Health playerHealth;
 
@@ -69,7 +73,7 @@ public class GameManager : MonoBehaviour
         gameOver = true;
         print("Game is over!");
         uiManager.OnGameWin();
-        StartCoroutine(LoadSceneAfterTime(4f,1));
+        StartCoroutine(LoadSceneAfterTime(4f,MENU_INDEX));
     }
 
     /// <summary>
@@ -88,7 +92,7 @@ public class GameManager : MonoBehaviour
         //Load the menu on ESC key press.
         if (Input.GetButtonDown("Cancel"))
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(MENU_INDEX);
         }
     }
 }
