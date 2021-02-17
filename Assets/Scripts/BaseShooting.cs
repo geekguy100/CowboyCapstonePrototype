@@ -85,6 +85,9 @@ public class BaseShooting : MonoBehaviour
     public BulletCountUI bcu;
     private SpriteRenderer characterSPR;
 
+    [Tooltip("The weapon used to shoot with.")]
+    [SerializeField] private Weapon weapon;
+
     public void Awake()
     {
         // obtain sprite renderers from the bloom lines
