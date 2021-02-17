@@ -46,6 +46,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7244148309967950905, guid: 02a7c86b3af3d364bb52108dbdbbf9f4, type: 3}
   minWaitTime: 2
   maxWaitTime: 5
+  minDistance: 14
 --- !u!1 &2326437105961856019
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,9 +253,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72de8ad988419974c94261cb6028d6a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  points: []
   minPointDistance: 3
