@@ -10,14 +10,20 @@ using System.Collections;
 
 public class Weapon : MonoBehaviour
 {
-    [Tooltip("The bullet prefab to instantiate.")]
-    [SerializeField] private GameObject bulletPrefab;
+    [Tooltip("The weapon's settings.")]
+    [SerializeField] private WeaponSettings weaponSettings;
+
+    // The name of the weapon.
+    private string weaponName;
+
+    // The bullet prefab to instantiate.
+    private GameObject bulletPrefab;
 
     [Tooltip("The origin of the bullet spawn.")]
     [SerializeField] private Transform bulletOrigin;
 
-    [Tooltip("How many bullets this weapon can hold per magazine.")]
-    [SerializeField] private int magazineSize;
+    // How many bullets this weapon can hold per magazine.
+    private int magazineSize;
 
     // The amount of ammo the player has in the current magazine.
     private int ammoInMagazine;
@@ -28,22 +34,33 @@ public class Weapon : MonoBehaviour
     [Tooltip("The amount of ammo the weapon holder has on their person (on standby).")]
     [SerializeField] private int ammoOnCharacter;
 
-    [Tooltip("The amount of time in seconds it takes to reload the weapon.")]
-    [SerializeField] private float reloadTime;
+    // The amount of time in seconds it takes to reload the weapon.
+    private float reloadTime;
 
-    [Tooltip("The amount of time that must be waited before being able to shoot again.")]
-    [SerializeField] private float timeBetweenShots = 0.3f;
+    // The amount of time in seconds that must be waited before being able to shoot again.
+    private float timeBetweenShots = 0.3f;
     private float currentShotTime;
 
-    [Tooltip("Should this weapon have infinite ammo?")]
+    [Tooltip("True if this weapon should have infinite ammo.")]
     [SerializeField] private bool infiniteAmmo = false;
 
-
-    private void Start()
+    void Start()
     {
-        ammoInMagazine = magazineSize;
-        clipSize = ammoInMagazine;
-        currentShotTime = timeBetweenShots;
+        if (weaponSettings == null)
+        {
+            Debug.LogWarning("No WeaponSettings found for " + gameObject.name + " of parent " + transform.parent.name + ".");
+            Destroy(this);
+            return;
+        }
+
+        weaponName = weaponSettings.name;
+        bulletPrefab = weaponSettings.bulletPrefab;
+        magazineSize = weaponSettings.magazineSize;
+        reloadTime = weaponSettings.reloadTime;
+        timeBetweenShots = weaponSettings.timeBetweenShots;
+
+        // Updating the actual game object's name to that of the given weapon name.
+        gameObject.name = weaponName;
     }
 
     private void Update()
@@ -60,6 +77,10 @@ public class Weapon : MonoBehaviour
     /// <param name="bulletRotation">The rotation to instantiate the bullet at.</param>
     public void Shoot(Quaternion bulletRotation)
     {
+        // Taking rate of fire into account.
+        if (currentShotTime < timeBetweenShots)
+            return;
+
         if (ammoInMagazine > 0)
         {
             Instantiate(bulletPrefab, bulletOrigin.position, bulletRotation);
