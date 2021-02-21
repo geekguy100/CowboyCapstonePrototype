@@ -59,6 +59,10 @@ public class Weapon : MonoBehaviour
         reloadTime = weaponSettings.reloadTime;
         timeBetweenShots = weaponSettings.timeBetweenShots;
 
+        ammoInMagazine = magazineSize;
+        clipSize = ammoInMagazine;
+        currentShotTime = timeBetweenShots;
+
         // Updating the actual game object's name to that of the given weapon name.
         gameObject.name = weaponName;
     }
@@ -81,6 +85,7 @@ public class Weapon : MonoBehaviour
         if (currentShotTime < timeBetweenShots)
             return;
 
+        print("Shooting weapon");
         if (ammoInMagazine > 0)
         {
             Instantiate(bulletPrefab, bulletOrigin.position, bulletRotation);

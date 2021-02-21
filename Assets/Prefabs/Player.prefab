@@ -74,6 +74,7 @@ MonoBehaviour:
   rightAimLine: {fileID: 8339710475460385068}
   bu: {fileID: 0}
   bcu: {fileID: 0}
+  weapon: {fileID: 0}
 --- !u!212 &8339710473963910307
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -220,6 +221,7 @@ GameObject:
   - component: {fileID: 8339710475144132331}
   - component: {fileID: 8339710475144132330}
   - component: {fileID: 8339710475144132329}
+  - component: {fileID: 9062349969268596511}
   - component: {fileID: 8339710475144132328}
   - component: {fileID: 8339710475144131863}
   m_Layer: 0
@@ -339,6 +341,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 4
+--- !u!114 &9062349969268596511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8339710475144131862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae5d9cf8a3db9a4f9ab95683da3f951, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 0}
 --- !u!50 &8339710475144132328
 Rigidbody2D:
   serializedVersion: 4
