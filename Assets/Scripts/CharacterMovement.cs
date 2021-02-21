@@ -3,11 +3,11 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class CharacterMovement : MonoBehaviour
 {
-    [SerializeField]
-    private float maxMovementSpeed = 5f;
-    [SerializeField]
-    private float currentMovementSpeed;
-    private SpriteRenderer spr;
+    [SerializeField] private float maxMovementSpeed = 5f;
+    [SerializeField] private float currentMovementSpeed;
+
+    // Not needed, but allows a character to flip.
+    [SerializeField] private CharacterFlipper flipper;
 
     //Has the character's movement been modified from its default value?
     private bool modifiedSpeed = false;
@@ -17,9 +17,9 @@ public class CharacterMovement : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
         currentMovementSpeed = maxMovementSpeed;
-        spr =GetComponent<SpriteRenderer>();
+
+        rb = GetComponent<Rigidbody2D>();
     }
 
     /// <summary>
@@ -30,7 +30,8 @@ public class CharacterMovement : MonoBehaviour
     {
         rb.velocity = direction * currentMovementSpeed;
 
-        UpdateSpriteFlip(direction.x);
+        if (flipper != null)
+            flipper.CheckDirection(direction);
     }
 
     /// <summary>
@@ -50,17 +51,5 @@ public class CharacterMovement : MonoBehaviour
     {
         modifiedSpeed = false;
         currentMovementSpeed = maxMovementSpeed;
-    }
-
-    private void UpdateSpriteFlip(float x)
-    {
-        if(x > 0)
-        {
-            spr.flipX = true;
-        }
-        else
-        {
-            spr.flipX = false;
-        }
     }
 }

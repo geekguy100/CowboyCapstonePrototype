@@ -40,7 +40,6 @@ public class EnemyShoot : MonoBehaviour
         {
             if (Vector2.Distance(transform.position, player.position) < minDistance)
             {
-                print(transform.parent.name);
                 //Calculate an angle towards the player.
                 Vector2 dir = (player.position - transform.position).normalized;
                 float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;

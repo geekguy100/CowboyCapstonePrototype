@@ -31,7 +31,8 @@ public class PlayerWeaponInput : MonoBehaviour
 
             Quaternion bulletRotation = Quaternion.Euler(0, 0, angle - 90);
             weapon.Shoot(bulletRotation);
-            print("PENITS");
         }
+        else if (Input.GetKeyDown(KeyCode.R))
+            weapon.Reload();
     }
 }

@@ -31,6 +31,8 @@ public class Weapon : MonoBehaviour
     // The amount of ammo that is in the player's magazine after reloading.
     private int clipSize;
 
+    private bool reloading = false;
+
     [Tooltip("The amount of ammo the weapon holder has on their person (on standby).")]
     [SerializeField] private int ammoOnCharacter;
 
@@ -101,6 +103,9 @@ public class Weapon : MonoBehaviour
     /// </summary>
     public void Reload()
     {
+        if (reloading || ammoInMagazine == magazineSize)
+            return;
+
         StartCoroutine(ReloadCoroutine());
     }
 
@@ -109,6 +114,7 @@ public class Weapon : MonoBehaviour
     /// </summary>
     private IEnumerator ReloadCoroutine()
     {
+        reloading = true;
         yield return new WaitForSeconds(reloadTime);
 
         if (!infiniteAmmo)
@@ -135,5 +141,7 @@ public class Weapon : MonoBehaviour
         // If the weapon has infinite ammo, just set its ammo count to the magazine size.
         else
             ammoInMagazine = magazineSize;
+
+        reloading = false;
     }
 }
