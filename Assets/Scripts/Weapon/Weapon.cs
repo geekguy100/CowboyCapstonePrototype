@@ -37,6 +37,21 @@ public class Weapon : MonoBehaviour
 
     // The maxmimum amount of bloom.
     private float maximumBloom;
+
+    // How many bullets are fired per shot.
+    private int bulletsPerBurstFire;
+
+    // How many bullets per burst fire.
+    private int roundsOfBurst;
+
+    // The time between consecutive burst bullet spawns.
+    private float burstBulletDelay;
+
+    // The time to wait between consecutive weapon bursts.
+    private float burstDelayTime;
+
+    // The time to wait after burst firing a weapon.
+    private float timeAfterBurst;
     #endregion
 
     #region ------- Serialized Fields - Data set in the inspector.
@@ -71,6 +86,9 @@ public class Weapon : MonoBehaviour
 
     // Amount of time shot needs to be held to zero in on enemy.
     private float recoilAmount = 1f;
+
+    // True if the weapon is being fired.
+    private bool isFiring = false;
     #endregion
 
 
@@ -92,6 +110,11 @@ public class Weapon : MonoBehaviour
         bloomMod = weaponSettings.bloomMod;
         bloomValue = weaponSettings.bloomValue;
         maximumBloom = weaponSettings.maximumBloom;
+        roundsOfBurst = weaponSettings.roundsOfBurst;
+        bulletsPerBurstFire = weaponSettings.bulletsPerBurstFire;
+        burstBulletDelay = weaponSettings.burstBulletDelay;
+        burstDelayTime = weaponSettings.burstDelayTime;
+        timeAfterBurst = weaponSettings.timeAfterBurst;
 
         ammoInMagazine = magazineSize;
         clipSize = ammoInMagazine;
@@ -144,32 +167,53 @@ public class Weapon : MonoBehaviour
     public void Shoot(Vector3 targetPosition)
     {
         // Taking rate of fire into account.
-        if (currentShotTime < timeBetweenShots)
+        if (currentShotTime < timeBetweenShots || isFiring)
             return;
 
-        if (ammoInMagazine > 0)
+        StartCoroutine(ShootCoroutine(targetPosition));
+    }
+
+    private IEnumerator ShootCoroutine(Vector3 targetPosition)
+    {
+        isFiring = true;
+        int currentBursts = roundsOfBurst;
+
+        do
         {
-            Vector3 dir = (targetPosition - bulletOrigin.position).normalized;
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            Quaternion bulletRotation = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
+            for (int j = 0; j < bulletsPerBurstFire; ++j)
+            {
+                if (ammoInMagazine > 0)
+                {
+                    Vector3 dir = (targetPosition - bulletOrigin.position).normalized;
+                    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                    Quaternion bulletRotation = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
 
-            //get the adjustment value
-            float adjVal = Random.Range(-bloomValue, bloomValue);
+                    //get the adjustment value
+                    float adjVal = Random.Range(-bloomValue, bloomValue);
 
-            //set the rotation of the shot, factoring in bloom.
-            bulletRotation *= Quaternion.AngleAxis(adjVal, Vector3.forward);
+                    //set the rotation of the shot, factoring in bloom.
+                    bulletRotation *= Quaternion.AngleAxis(adjVal, Vector3.forward);
 
-            //increase recoil time
-            recoilTime += recoilAmount;
+                    //increase recoil time
+                    recoilTime += recoilAmount;
 
-            GameObject bullet = Instantiate(bulletPrefab, bulletOrigin.position, bulletRotation);
-            //Physics2D.IgnoreCollision(GetComponent<Collider2D>(), bullet.GetComponent<Collider2D>());
+                    GameObject bullet = Instantiate(bulletPrefab, bulletOrigin.position, bulletRotation);
+                    //Physics2D.IgnoreCollision(GetComponent<Collider2D>(), bullet.GetComponent<Collider2D>());
 
-            --ammoInMagazine;
+                    --ammoInMagazine;
+                }
 
-            currentShotTime = 0;
-        }
+                yield return new WaitForSeconds(burstBulletDelay);
+            }
 
+            --currentBursts;
+            yield return new WaitForSeconds(burstDelayTime);
+
+        } while (currentBursts > 0);
+
+        isFiring = false;
+        yield return new WaitForSeconds(timeAfterBurst);
+        currentShotTime = 0;
     }
 
     /// <summary>

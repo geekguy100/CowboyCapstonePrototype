@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a657b7c29f08ef84d860dec1659196b3, type: 3}
-  m_Name: Pistol
+  m_Name: BustUzi
   m_EditorClassIdentifier: 
-  weaponName: Pistol
+  weaponName: Uzi
   bulletPrefab: {fileID: 7244148309967950905, guid: 02a7c86b3af3d364bb52108dbdbbf9f4, type: 3}
-  magazineSize: 15
-  reloadTime: 3
-  timeBetweenShots: 0.5
+  magazineSize: 30
+  reloadTime: 5
+  timeBetweenShots: 0
   bulletsPerBurstFire: 3
   burstBulletDelay: 0.2
-  burstDelayTime: 0.5
-  roundsOfBurst: 6
+  burstDelayTime: 0.35
+  roundsOfBurst: 3
   timeAfterBurst: 0
-  bloomMod: 8
-  bloomValue: 1
-  maximumBloom: 2
+  bloomMod: 16
+  bloomValue: 8
+  maximumBloom: 3
