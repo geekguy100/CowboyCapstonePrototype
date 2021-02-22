@@ -6274,6 +6274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponSettings: {fileID: 11400000, guid: ed3203c165a4b02438ecfe84414112d8, type: 2}
+  spreadUI: {fileID: 0}
   bulletOrigin: {fileID: 1934677065}
   ammoOnCharacter: 10
   infiniteAmmo: 0

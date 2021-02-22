@@ -17,10 +17,10 @@ MonoBehaviour:
   magazineSize: 15
   reloadTime: 3
   timeBetweenShots: 0.5
-  bulletsPerBurstFire: 3
-  burstBulletDelay: 0.2
-  burstDelayTime: 0.5
-  roundsOfBurst: 6
+  bulletsPerBurstFire: 1
+  burstBulletDelay: 0
+  burstDelayTime: 0
+  roundsOfBurst: 0
   timeAfterBurst: 0
   bloomMod: 8
   bloomValue: 1
