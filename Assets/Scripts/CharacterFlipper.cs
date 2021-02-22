@@ -10,22 +10,20 @@ using UnityEngine;
 public class CharacterFlipper : MonoBehaviour
 {
     // True if the character is facing right.
-    private bool facingRight = false;
+    protected bool facingRight = false;
 
     /// <summary>
     /// Checks if the character is facing in the right direction and flips it if it is not.
     /// </summary>
     /// <param name="dir">The direction the character should be facing.</param>
-    public void CheckDirection(Vector3 dir)
+    public virtual void CheckDirection(Vector3 dir)
     {
         if (dir.x > 0 && !facingRight)
         {
-            facingRight = true;
             Flip();
         }
         else if (dir.x < 0 && facingRight)
         {
-            facingRight = false;
             Flip();
         }
     }
@@ -33,8 +31,10 @@ public class CharacterFlipper : MonoBehaviour
     /// <summary>
     /// Flips the direction of the character.
     /// </summary>
-    public void Flip()
+    protected void Flip()
     {
+        facingRight = !facingRight;
+
         Vector3 scale = transform.localScale;
         scale.x = -scale.x;
 

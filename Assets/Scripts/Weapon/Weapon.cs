@@ -80,14 +80,19 @@ public class Weapon : MonoBehaviour
     /// <summary>
     /// Fires a bullet from the weapon.
     /// </summary>
-    /// <param name="bulletRotation">The rotation to instantiate the bullet at.</param>
-    public void Shoot(Quaternion bulletRotation)
+    /// <param name="targetPosition">The position in world space of the target to shoot at.</param>
+    public void Shoot(Vector3 targetPosition)
     {
+        print(targetPosition);
+
         // Taking rate of fire into account.
         if (currentShotTime < timeBetweenShots)
             return;
 
-        print("Shooting weapon");
+        Vector3 dir = (targetPosition - bulletOrigin.position).normalized;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        Quaternion bulletRotation = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
+
         if (ammoInMagazine > 0)
         {
             Instantiate(bulletPrefab, bulletOrigin.position, bulletRotation);

@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 8339710475144132330}
   - component: {fileID: 8339710475144132329}
   - component: {fileID: 9062349969268596511}
+  - component: {fileID: 3865035867631611792}
   - component: {fileID: 8339710475144132328}
   - component: {fileID: 8339710475144131863}
   m_Layer: 0
@@ -328,6 +329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxMovementSpeed: 5
   currentMovementSpeed: 0
+  flipper: {fileID: 0}
 --- !u!114 &8339710475144132329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,6 +356,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 0}
+--- !u!114 &3865035867631611792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8339710475144131862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1036c3bd7e05bb4791bc7effd99cf08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &8339710475144132328
 Rigidbody2D:
   serializedVersion: 4

@@ -1,9 +1,9 @@
 /*****************************************************************************
 // File Name :         PlayerWeaponInput.cs
 // Author :            Kyle Grenier
-// Creation Date :     #CREATIONDATE#
+// Creation Date :     02/20/2021
 //
-// Brief Description : ADD BRIEF DESCRIPTION OF THE FILE HERE
+// Brief Description : Script to handle player input to shoot weapons.
 *****************************************************************************/
 using UnityEngine;
 
@@ -26,11 +26,9 @@ public class PlayerWeaponInput : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 dir = (mousePos - transform.position).normalized;
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            mousePos.z = 0;
 
-            Quaternion bulletRotation = Quaternion.Euler(0, 0, angle - 90);
-            weapon.Shoot(bulletRotation);
+            weapon.Shoot(mousePos);
         }
         else if (Input.GetKeyDown(KeyCode.R))
             weapon.Reload();
