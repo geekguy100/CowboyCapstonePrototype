@@ -591,6 +591,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlaytestEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2326437105961856019, guid: 1c156ef3615b8dd44843b72c016f7e52, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2326437105961856023, guid: 1c156ef3615b8dd44843b72c016f7e52, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -1863,6 +1867,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 8339710473963910308, guid: fb75c688bf43bf74b899015b2126d9e9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8339710475144131862, guid: fb75c688bf43bf74b899015b2126d9e9, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1948,6 +1956,10 @@ PrefabInstance:
     - target: {fileID: 2326437105961856019, guid: 1c156ef3615b8dd44843b72c016f7e52, type: 3}
       propertyPath: m_Name
       value: PlaytestEnemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2326437105961856019, guid: 1c156ef3615b8dd44843b72c016f7e52, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2326437105961856023, guid: 1c156ef3615b8dd44843b72c016f7e52, type: 3}
       propertyPath: m_RootOrder

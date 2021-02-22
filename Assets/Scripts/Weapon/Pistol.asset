@@ -17,3 +17,6 @@ MonoBehaviour:
   magazineSize: 15
   reloadTime: 3
   timeBetweenShots: 0.5
+  bloomMod: 16
+  bloomValue: 8
+  maximumBloom: 2
