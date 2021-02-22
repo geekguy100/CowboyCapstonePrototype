@@ -119,11 +119,14 @@ public class Weapon : MonoBehaviour
             // keep recoil at 0
             recoilTime = 0;
         }
+
+        AdjustBloom();
     }
 
     //calculate the bloom
     private void AdjustBloom()
     {
+        print(recoilTime);
         //calculate the bloom values
         bloomValue = recoilTime * bloomMod;
 
@@ -151,7 +154,7 @@ public class Weapon : MonoBehaviour
             Quaternion bulletRotation = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
 
             //get the adjustment value
-            float adjVal = Random.Range(-bloomValue - 3, bloomValue + 3);
+            float adjVal = Random.Range(-bloomValue, bloomValue);
 
             //set the rotation of the shot, factoring in bloom.
             bulletRotation *= Quaternion.AngleAxis(adjVal, Vector3.forward);
