@@ -55,9 +55,6 @@ public class Weapon : MonoBehaviour
     #endregion
 
     #region ------- Serialized Fields - Data set in the inspector.
-    [Tooltip("Optional WeaponSpreadUI to control display of weapon's spread.")]
-    [SerializeField] private WeaponSpreadUI spreadUI;
-
     [Tooltip("The origin of the bullet spawn.")]
     [SerializeField] private Transform bulletOrigin;
 
@@ -149,7 +146,6 @@ public class Weapon : MonoBehaviour
     //calculate the bloom
     private void AdjustBloom()
     {
-        print(recoilTime);
         //calculate the bloom values
         bloomValue = recoilTime * bloomMod;
 
@@ -173,6 +169,29 @@ public class Weapon : MonoBehaviour
         StartCoroutine(ShootCoroutine(targetPosition));
     }
 
+    /// <summary>
+    /// Gets the rotation of the bullet given the target's position.
+    /// </summary>
+    /// <param name="targetPosition">The position in world space of the target to shoot at.</param>
+    /// <returns></returns>
+    public Quaternion GetBulletRotation(Vector3 targetPosition)
+    {
+        Vector3 dir = (targetPosition - bulletOrigin.position).normalized;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        Quaternion bulletRotation = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
+
+        return bulletRotation;
+    }
+    
+    /// <summary>
+    /// Get the current bloom value of the weapon.
+    /// </summary>
+    /// <returns>The weapon's current bloom value.</returns>
+    public float GetBloomValue()
+    {
+        return bloomValue;
+    }
+
     private IEnumerator ShootCoroutine(Vector3 targetPosition)
     {
         isFiring = true;
@@ -184,11 +203,9 @@ public class Weapon : MonoBehaviour
             {
                 if (ammoInMagazine > 0)
                 {
-                    Vector3 dir = (targetPosition - bulletOrigin.position).normalized;
-                    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-                    Quaternion bulletRotation = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
+                    Quaternion bulletRotation = GetBulletRotation(targetPosition);
 
-                    //get the adjustment value
+                    //get the adjustment value for setting the weapon's spread.
                     float adjVal = Random.Range(-bloomValue, bloomValue);
 
                     //set the rotation of the shot, factoring in bloom.

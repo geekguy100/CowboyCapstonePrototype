@@ -9,7 +9,11 @@ using UnityEngine;
 
 public class PlayerWeaponInput : MonoBehaviour
 {
+    [Tooltip("The Weapon to fire.")]
     [SerializeField] private Weapon weapon;
+
+    [Tooltip("The WeaponSpreadUI to display the weapon's spread.")]
+    [SerializeField] private WeaponSpreadUI spreadUI;
 
     private void Start()
     {
@@ -23,11 +27,13 @@ public class PlayerWeaponInput : MonoBehaviour
 
     private void Update()
     {
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0;
+
+        spreadUI?.UpdateAimLines(weapon.GetBulletRotation(mousePos), weapon.GetBloomValue());
+
         if (Input.GetMouseButtonDown(0))
         {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePos.z = 0;
-
             weapon.Shoot(mousePos);
         }
         else if (Input.GetKeyDown(KeyCode.R))
