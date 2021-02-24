@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour
 {
     [Tooltip("The originator of the bullet")]
-    public GameObject origin; 
+    public GameObject origin;
 
     [Tooltip("the speed of the bullet")]
     public float speed = 8;
@@ -18,6 +18,14 @@ public class BulletScript : MonoBehaviour
 
     [Tooltip("Damage done by bullet.")]
     [SerializeField] private int damage = 1;
+
+    [Tooltip("Returns true if bullet has passed over cover.")]
+    public bool passedOverCover = false;
+
+    [Tooltip("Returns true if bullet is passing over cover")]
+    public bool passingOverCover = false;
+
+    public float encounterCoverTimer = .5f;
 
     private void Awake()
     {
@@ -38,23 +46,40 @@ public class BulletScript : MonoBehaviour
 
         //deduct time from life
         deathTimer();
+
+        if (!passingOverCover)
+        {
+            encounterCoverTimer -= Time.deltaTime;
+
+            if (encounterCoverTimer <= 0)
+            {
+                passedOverCover = true;
+            }
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
         Health health = col.GetComponent<Health>();
+        ObstacleScript obstacleScript = col.GetComponent<ObstacleScript>();
+
         if (health != null)
         {
             health.TakeDamage(damage);
             Destroy(gameObject);
         }
-        else if (col.CompareTag("Obstacle"))
+        else if (obstacleScript != null && passedOverCover)
         {
             //Uncomment below to allow bullets to destroy obstacles.
             //Destroy(col.gameObject);
+
+            obstacleScript.TakeDamage(damage);
             Destroy(gameObject);
         }
-
+        else if (obstacleScript != null && !passedOverCover)
+        {
+            passingOverCover = true;
+        }
         ////detect enemies
         //if (collisionDetectionMode)
         //{
@@ -85,6 +110,11 @@ public class BulletScript : MonoBehaviour
         //            break;
         //    }
         //}
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        passedOverCover = true;
     }
 
     //timer that will remove bullet after a period of time
@@ -135,7 +165,7 @@ public class BulletScript : MonoBehaviour
     void determineWhatToHit()
     {
         //player
-        if(origin.CompareTag("Player"))
+        if (origin.CompareTag("Player"))
         {
             collisionDetectionMode = true;
             gameObject.GetComponentInChildren<BulletCollider>().collisionDetectionMode = true;

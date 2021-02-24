@@ -31,6 +31,7 @@ public class KyleBullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         Health health = col.gameObject.GetComponent<Health>();
+        ObstacleScript obstacleScript = col.GetComponent<ObstacleScript>();
 
         //If what we collided with has a Health component, hurt it and destory the bullet.
         if (health != null)
@@ -38,10 +39,12 @@ public class KyleBullet : MonoBehaviour
             health.TakeDamage(damage);
             Destroy(gameObject);
         }
-        else if (col.CompareTag("Obstacle"))
+        else if (obstacleScript != null)
         {
             //Uncomment below to allow bullets to destroy obstacles.
             //Destroy(col.gameObject);
+
+            obstacleScript.TakeDamage(damage);
             Destroy(gameObject);
         }
     }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6303281776757266960}
   - component: {fileID: 6303281776757266963}
   - component: {fileID: -1503958231882337028}
+  - component: {fileID: 99616127026505357}
   m_Layer: 0
   m_Name: Oil Trough Right
   m_TagString: Obstacle
@@ -134,3 +135,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &99616127026505357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6303281776757266962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64adb3b0624592b42803235bf1597769, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

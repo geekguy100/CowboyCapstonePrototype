@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 249288171462398298}
   - component: {fileID: 249288171462398299}
   - component: {fileID: -6592300345138998056}
+  - component: {fileID: 3959628263781252748}
   m_Layer: 0
   m_Name: Barrier Left
   m_TagString: Obstacle
@@ -134,3 +135,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3959628263781252748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249288171462398292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64adb3b0624592b42803235bf1597769, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
