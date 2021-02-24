@@ -15,8 +15,9 @@ public class BanditAI : EnemyAI
     // The cover object used by this 
     private Cover cover = null;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         // Find a new cover object to hide behind.
         FindNewCover();
     }

@@ -167,6 +167,8 @@ public class Weapon : MonoBehaviour
         if (currentShotTime < timeBetweenShots || isFiring)
             return;
 
+        print(currentShotTime + " should be greater than " + timeBetweenShots + " to shoot...");
+        isFiring = true;
         StartCoroutine(ShootCoroutine(targetPosition, weaponHolder));
     }
 
@@ -200,7 +202,6 @@ public class Weapon : MonoBehaviour
 
     private IEnumerator ShootCoroutine(Vector3 targetPosition, Transform weaponHolder)
     {
-        isFiring = true;
         int currentBursts = roundsOfBurst;
 
         do
@@ -234,8 +235,8 @@ public class Weapon : MonoBehaviour
 
         } while (currentBursts > 0);
 
-        isFiring = false;
         yield return new WaitForSeconds(timeAfterBurst);
+        isFiring = false;
         currentShotTime = 0;
     }
 
@@ -247,6 +248,7 @@ public class Weapon : MonoBehaviour
         if (reloading || ammoInMagazine == magazineSize)
             return;
 
+        reloading = true;
         StartCoroutine(ReloadCoroutine());
     }
 
@@ -255,7 +257,6 @@ public class Weapon : MonoBehaviour
     /// </summary>
     private IEnumerator ReloadCoroutine()
     {
-        reloading = true;
         yield return new WaitForSeconds(reloadTime);
 
         if (!infiniteAmmo)

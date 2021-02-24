@@ -33,6 +33,7 @@ public static class CoverHelper
     /// </summary>
     public static void OnCoverDestroyed()
     {
-        AstarPath.active.Scan();
+        if (AstarPath.active != null)
+            AstarPath.active.Scan();
     }
 }

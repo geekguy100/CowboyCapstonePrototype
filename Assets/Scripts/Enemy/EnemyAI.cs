@@ -19,7 +19,7 @@ public abstract class EnemyAI : MonoBehaviour
     private Seeker seeker;
 
     // The distance the target must be from the enemy for the enemy to detect them.
-    private float playerRange;
+    [SerializeField] private float playerRange;
 
     // The player.
     private Transform player;
@@ -27,16 +27,16 @@ public abstract class EnemyAI : MonoBehaviour
 
 
 
-    private void Awake()
+    protected virtual void Awake()
     {
         characterMovement = GetComponent<CharacterMovement>();
         enemyBehaviour = GetComponent<EnemyBehaviour>();
         seeker = GetComponent<Seeker>();
     }
 
-    private void Start()
+    protected virtual void Start()
     {
-        //player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
 
