@@ -159,7 +159,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36961ef5f93c94c4e8d940f1f85f53aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextWaypointDistance: 3
+  nextWaypointDistance: 0.3
+  playerRange: 20
   weapon: {fileID: 5222067232797791802}
 --- !u!114 &8680677287135258355
 MonoBehaviour:
