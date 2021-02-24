@@ -1,22 +1,29 @@
-/*****************************************************************************
-// File Name :         EnemyAI.cs
-// Author :            Kyle Grenier
-// Creation Date :     #CREATIONDATE#
-//
-// Brief Description : EnemyAI that detects when the player is in range, and manages switching between AI behaviours.
-*****************************************************************************/
-
 using UnityEngine;
 using Pathfinding;
 
 [RequireComponent(typeof(Seeker))]
 [RequireComponent(typeof(CharacterMovement))]
-public class EnemyAI : MonoBehaviour
+public abstract class EnemyAI : MonoBehaviour
 {
     private CharacterMovement characterMovement;
     private EnemyBehaviour enemyBehaviour;
 
+    private Transform target;
+
+    // How close the enemy needs to be to a waypoint before it moves on to the next one.
+    [SerializeField] private float nextWaypointDistance = 3f;
+
+    private Path path;
+    private int currentWaypoint = 0;
+
+    private Seeker seeker;
+
+    // The distance the target must be from the enemy for the enemy to detect them.
+    private float playerRange;
+
+    // The player.
     private Transform player;
+
 
 
 
@@ -24,15 +31,88 @@ public class EnemyAI : MonoBehaviour
     {
         characterMovement = GetComponent<CharacterMovement>();
         enemyBehaviour = GetComponent<EnemyBehaviour>();
-
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        seeker = GetComponent<Seeker>();
     }
 
-    private void Update()
+    private void Start()
     {
-        if (Vector2.Distance(transform.position, player.position) < 20f)
+        //player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+
+    /// <summary>
+    /// Starts pathfinding towards a target.
+    /// </summary>
+    /// <param name="target">The target to pathfind towards</param>
+    protected void StartPathfinding(Transform target)
+    {
+        this.target = target;
+        CancelInvoke("UpdatePath");
+        InvokeRepeating("UpdatePath", 0f, 0.5f);
+    }
+
+    /// <summary>
+    /// Start calculating a new path if the enemy is done calculating the current one.
+    /// </summary>
+    void UpdatePath()
+    {
+        if (seeker.IsDone())
         {
-            //Player in range of enemy. Switch to combat behaviour.
+            seeker.StartPath(transform.position, target.position, OnPathComplete);
         }
+    }
+
+    /// <summary>
+    /// Callback function for when the Seeker script generates a path.
+    /// </summary>
+    /// <param name="p">The completed path.</param>
+    private void OnPathComplete(Path p)
+    {
+        //If we got no errors in the generation, set this enemy's path to 
+        //what was generated, and reset its waypoint.
+        if (!p.error)
+        {
+            path = p;
+            currentWaypoint = 0;
+        }
+    }
+
+    Vector2 dir;
+    protected virtual void Update()
+    {
+        // Perform unique action if player is in range (e.g. start shooting).
+        if (player != null && Vector2.Distance(transform.position, player.position) < playerRange)
+            PlayerRangeAction(player);
+
+        if (path == null || target == null)
+            return;
+
+        //If we reached the end of the path.
+        if (currentWaypoint >= path.vectorPath.Count)
+        {
+            print(gameObject.name + ": Finished pathfinding.");
+            CancelInvoke("UpdatePath");
+
+            path = null;
+            target = null;
+            dir = Vector2.zero;     // Zero the enemy's direction of movement so it won't continue moving in its previous direction.
+            return;
+        }
+
+        //Calculating a direction from enemy's current position to the position of the current waypoint.
+        dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
+
+        //Get the distance to the next waypoint in the path, and update our current waypoint if we're within range.
+        float distance = Vector2.Distance(transform.position, path.vectorPath[currentWaypoint]);
+        if (distance < nextWaypointDistance)
+            currentWaypoint++;
+
+    }
+
+    protected abstract void PlayerRangeAction(Transform player);
+
+    private void FixedUpdate()
+    {
+        characterMovement.Move(dir);
     }
 }

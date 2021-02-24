@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour
         //Subscribing to the OnDeath event, so OnPlayerDeath will run when the player dies.
         playerHealth = GameObject.Find("Player").GetComponent<Health>();
         playerHealth.OnDeath += OnPlayerDeath;
-        print("FOUND PLAYER");
 
         //Make sure OnGameWin runs when the level is completed.
         Level.OnLevelComplete += OnGameWin;
