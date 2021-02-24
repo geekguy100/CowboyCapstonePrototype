@@ -18,6 +18,15 @@ public class KyleBullet : MonoBehaviour
     [Tooltip("Time the bullet will be destroyed without hitting anything.")]
     [SerializeField] private float destroyTime = 10f;
 
+    [Tooltip("Returns true if bullet has passed over cover.")]
+    public bool passedOverCover = false;
+
+    [Tooltip("Returns true if bullet is passing over cover")]
+    public bool passingOverCover = false;
+
+    [Tooltip("counts down the time before a bullet encounters cover")]
+    public float encounterCoverTimer = .01f;
+
     private void Start()
     {
         Destroy(gameObject, destroyTime);
@@ -26,6 +35,16 @@ public class KyleBullet : MonoBehaviour
     private void Update()
     {
         transform.position += transform.up * speed * Time.deltaTime;
+
+        if (!passingOverCover)
+        {
+            encounterCoverTimer -= Time.deltaTime;
+
+            if (encounterCoverTimer <= 0)
+            {
+                passedOverCover = true;
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -39,13 +58,17 @@ public class KyleBullet : MonoBehaviour
             health.TakeDamage(damage);
             Destroy(gameObject);
         }
-        else if (obstacleScript != null)
+        else if (obstacleScript != null && passedOverCover)
         {
             //Uncomment below to allow bullets to destroy obstacles.
             //Destroy(col.gameObject);
 
             obstacleScript.TakeDamage(damage);
             Destroy(gameObject);
+        }
+        else if (obstacleScript != null && !passedOverCover)
+        {
+            passingOverCover = true;
         }
     }
 }

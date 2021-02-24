@@ -25,7 +25,8 @@ public class BulletScript : MonoBehaviour
     [Tooltip("Returns true if bullet is passing over cover")]
     public bool passingOverCover = false;
 
-    public float encounterCoverTimer = .5f;
+    [Tooltip("counts down the time before a bullet encounters cover")]
+    public float encounterCoverTimer = .2f;
 
     private void Awake()
     {

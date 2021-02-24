@@ -125,3 +125,6 @@ MonoBehaviour:
   speed: 30
   damage: 1
   destroyTime: 10
+  passedOverCover: 0
+  passingOverCover: 0
+  encounterCoverTimer: 0.025
