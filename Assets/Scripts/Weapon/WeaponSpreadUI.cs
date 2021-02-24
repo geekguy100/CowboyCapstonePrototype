@@ -1,9 +1,9 @@
 /*****************************************************************************
 // File Name :         WeaponSpreadUI.cs
 // Author :            Kyle Grenier
-// Creation Date :     #CREATIONDATE#
+// Creation Date :     02/22/2021
 //
-// Brief Description : ADD BRIEF DESCRIPTION OF THE FILE HERE
+// Brief Description : Script to control displaying a WeaponSpreadUI for a weapon user.
 *****************************************************************************/
 using UnityEngine;
 
@@ -38,7 +38,8 @@ public class WeaponSpreadUI : MonoBehaviour
     /// </summary>
     /// <param name="rotationOfAim">The rotation of the bullet to be taken.</param>
     /// <param name="bloomValue">The weapon's bloom value.</param>
-    public void UpdateAimLines(Quaternion rotationOfAim, float bloomValue)
+    /// <param name="weaponHolder">The Transform using the weapon.</param>
+    public void UpdateAimLines(Quaternion rotationOfAim, float bloomValue, Transform weaponHolder, Vector3 targetPosition)
     {
         //obtain the rotation of player aim
         Quaternion adj = rotationOfAim;
@@ -60,7 +61,33 @@ public class WeaponSpreadUI : MonoBehaviour
 
         Vector3 rotOfAimEuler = rotationOfAim.eulerAngles;
         rotOfAimEuler.z -= 90;
+
         centerLine.transform.rotation = Quaternion.Euler(rotOfAimEuler);
+
+        HandleSpriteFlipping(weaponHolder, targetPosition);
+        
+    }
+
+    /// <summary>
+    /// Handles flipping the aim line sprites based on the direction the weapon holder should be looking.
+    /// </summary>
+    /// <param name="weaponHolder">The Transform using the Weapon.</param>
+    /// <param name="targetPosition">The position of the target the weapon holder wants to shoot at.</param>
+    private void HandleSpriteFlipping(Transform weaponHolder, Vector3 targetPosition)
+    {
+        Vector3 dir = (weaponHolder.position - targetPosition);
+        if (dir.x > 0 && !ctrline.flipX)
+        {
+            ctrline.flipX = true;
+            lal.flipX = true;
+            ral.flipX = true;
+        }
+        else if (dir.x < 0 && ctrline.flipX)
+        {
+            ctrline.flipX = false;
+            lal.flipX = false;
+            ral.flipX = false;
+        }
     }
 
     //sets the length of the aiming line

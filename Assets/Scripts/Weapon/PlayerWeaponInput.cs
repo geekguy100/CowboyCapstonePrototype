@@ -30,7 +30,7 @@ public class PlayerWeaponInput : MonoBehaviour
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
 
-        spreadUI?.UpdateAimLines(weapon.GetBulletRotation(mousePos), weapon.GetBloomValue());
+        spreadUI?.UpdateAimLines(weapon.GetBulletRotation(mousePos), weapon.GetBloomValue(), transform, mousePos);
 
         if (Input.GetMouseButtonDown(0))
         {
