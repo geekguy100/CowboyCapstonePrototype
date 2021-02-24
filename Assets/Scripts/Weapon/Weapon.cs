@@ -160,13 +160,14 @@ public class Weapon : MonoBehaviour
     /// Fires a bullet from the weapon.
     /// </summary>
     /// <param name="targetPosition">The position in world space of the target to shoot at.</param>
-    public void Shoot(Vector3 targetPosition)
+    /// <param name="weaponHolder">The Transform using the weapon. Used to prevent accidental collision.</param>
+    public void Shoot(Vector3 targetPosition, Transform weaponHolder)
     {
         // Taking rate of fire into account.
         if (currentShotTime < timeBetweenShots || isFiring)
             return;
 
-        StartCoroutine(ShootCoroutine(targetPosition));
+        StartCoroutine(ShootCoroutine(targetPosition, weaponHolder));
     }
 
     /// <summary>
@@ -192,7 +193,12 @@ public class Weapon : MonoBehaviour
         return bloomValue;
     }
 
-    private IEnumerator ShootCoroutine(Vector3 targetPosition)
+    public Transform GetBulletOrigin()
+    {
+        return bulletOrigin;
+    }
+
+    private IEnumerator ShootCoroutine(Vector3 targetPosition, Transform weaponHolder)
     {
         isFiring = true;
         int currentBursts = roundsOfBurst;
@@ -215,7 +221,7 @@ public class Weapon : MonoBehaviour
                     recoilTime += recoilAmount;
 
                     GameObject bullet = Instantiate(bulletPrefab, bulletOrigin.position, bulletRotation);
-                    //Physics2D.IgnoreCollision(GetComponent<Collider2D>(), bullet.GetComponent<Collider2D>());
+                    Physics2D.IgnoreCollision(weaponHolder.GetComponent<Collider2D>(), bullet.GetComponent<Collider2D>());
 
                     --ammoInMagazine;
                 }

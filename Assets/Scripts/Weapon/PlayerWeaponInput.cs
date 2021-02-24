@@ -34,7 +34,7 @@ public class PlayerWeaponInput : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            weapon.Shoot(mousePos);
+            weapon.Shoot(mousePos, transform);
         }
         else if (Input.GetKeyDown(KeyCode.R))
             weapon.Reload();

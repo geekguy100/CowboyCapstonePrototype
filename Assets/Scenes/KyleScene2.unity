@@ -986,11 +986,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &896573423 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9147236812749222002, guid: 4e5c98c9bd57b2542bcdbcd27dd9e205, type: 3}
-  m_PrefabInstance: {fileID: 9086231912324142251}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &934244960
 GameObject:
   m_ObjectHideFlags: 0
@@ -6266,24 +6261,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 626198840485465411, guid: 4e5c98c9bd57b2542bcdbcd27dd9e205, type: 3}
-      propertyPath: m_FlipX
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 983013650888729803, guid: 4e5c98c9bd57b2542bcdbcd27dd9e205, type: 3}
-      propertyPath: m_FlipX
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 983013651674777843, guid: 4e5c98c9bd57b2542bcdbcd27dd9e205, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 983013651674778376, guid: 4e5c98c9bd57b2542bcdbcd27dd9e205, type: 3}
       propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 983013651674778376, guid: 4e5c98c9bd57b2542bcdbcd27dd9e205, type: 3}
-      propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 983013651674778376, guid: 4e5c98c9bd57b2542bcdbcd27dd9e205, type: 3}
@@ -6326,17 +6309,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 983013651885932474, guid: 4e5c98c9bd57b2542bcdbcd27dd9e205, type: 3}
-      propertyPath: m_FlipX
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 983013652385204551, guid: 4e5c98c9bd57b2542bcdbcd27dd9e205, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9086231914131478924, guid: 4e5c98c9bd57b2542bcdbcd27dd9e205, type: 3}
-      propertyPath: centerLine
-      value: 
-      objectReference: {fileID: 896573423}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e5c98c9bd57b2542bcdbcd27dd9e205, type: 3}

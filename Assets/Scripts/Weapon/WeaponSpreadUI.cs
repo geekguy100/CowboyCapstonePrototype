@@ -1,7 +1,7 @@
 /*****************************************************************************
 // File Name :         WeaponSpreadUI.cs
 // Author :            Kyle Grenier
-// Creation Date :     02/22/2021
+// Creation Date :     #CREATIONDATE#
 //
 // Brief Description : Script to control displaying a WeaponSpreadUI for a weapon user.
 *****************************************************************************/
@@ -68,6 +68,7 @@ public class WeaponSpreadUI : MonoBehaviour
         
     }
 
+    #region Sprite Flipping
     /// <summary>
     /// Handles flipping the aim line sprites based on the direction the weapon holder should be looking.
     /// </summary>
@@ -78,17 +79,22 @@ public class WeaponSpreadUI : MonoBehaviour
         Vector3 dir = (weaponHolder.position - targetPosition);
         if (dir.x > 0 && !ctrline.flipX)
         {
-            ctrline.flipX = true;
-            lal.flipX = true;
-            ral.flipX = true;
+            FlipAllSprites();
         }
         else if (dir.x < 0 && ctrline.flipX)
         {
-            ctrline.flipX = false;
-            lal.flipX = false;
-            ral.flipX = false;
+            FlipAllSprites();
         }
     }
+
+    private void FlipAllSprites()
+    {
+        ctrline.flipX = !ctrline.flipX;
+        lal.flipX = !lal.flipX;
+        ral.flipX = !ral.flipX;
+    }
+
+    #endregion
 
     //sets the length of the aiming line
     private void SetDistanceOfAim()
