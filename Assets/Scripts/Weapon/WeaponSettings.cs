@@ -34,6 +34,18 @@ public class WeaponSettings : ScriptableObject
         "the time waited after bursting and to start shooting again.")] 
     public float timeBetweenShots;
 
+    [Tooltip("A multiplier affecting damage this weapon does to cover.")]
+    public float coverDamageMultipler;
+
+
+    [Header("Damage")]
+
+
+    [Tooltip("How much damage this weapon does to other characters.")]
+    public int characterDamage;
+
+    [Tooltip("How much damage this weapon does to cover.")]
+    public int coverDamage;
 
 
     [Header("Burst Firing")]

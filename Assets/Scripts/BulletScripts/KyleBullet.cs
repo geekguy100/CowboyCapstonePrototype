@@ -12,8 +12,11 @@ public class KyleBullet : MonoBehaviour
     [Tooltip("The travel speed of the bullet.")]
     [SerializeField] private float speed = 5f;
 
-    [Tooltip("The damage the bullet inflicts.")]
-    [SerializeField] private int damage = 1;
+    // The damage the bullet inflicts.
+    private int characterDamage = 1;
+
+    // The amount of damage this bullet does to cover.
+    private int coverDamage = 1;
 
     [Tooltip("Time the bullet will be destroyed without hitting anything.")]
     [SerializeField] private float destroyTime = 10f;
@@ -26,6 +29,15 @@ public class KyleBullet : MonoBehaviour
 
     [Tooltip("counts down the time before a bullet encounters cover")]
     public float encounterCoverTimer = .01f;
+
+
+    public void Init(int characterDamage, int coverDamage)
+    {
+        this.characterDamage = characterDamage;
+        this.coverDamage = coverDamage;
+    }
+
+
 
     private void Start()
     {
@@ -55,15 +67,12 @@ public class KyleBullet : MonoBehaviour
         //If what we collided with has a Health component, hurt it and destory the bullet.
         if (health != null)
         {
-            health.TakeDamage(damage);
+            health.TakeDamage(characterDamage);
             Destroy(gameObject);
         }
         else if (obstacleScript != null && passedOverCover)
         {
-            //Uncomment below to allow bullets to destroy obstacles.
-            //Destroy(col.gameObject);
-
-            obstacleScript.TakeDamage(damage);
+            obstacleScript.TakeDamage(coverDamage);
             Destroy(gameObject);
         }
         else if (obstacleScript != null && !passedOverCover)

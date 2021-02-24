@@ -1488,17 +1488,6 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
---- !u!114 &1218598129 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9086231914131478924, guid: 4e5c98c9bd57b2542bcdbcd27dd9e205, type: 3}
-  m_PrefabInstance: {fileID: 9086231912324142251}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a0de72fab402ee4e90acc41c334d131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1290801655
 GameObject:
   m_ObjectHideFlags: 0
@@ -6318,15 +6307,7 @@ PrefabInstance:
     - target: {fileID: 5222067232797791802, guid: c74e6af7cea93ad4d951a67afdac10e1, type: 3}
       propertyPath: weaponSettings
       value: 
-      objectReference: {fileID: 11400000, guid: ed3203c165a4b02438ecfe84414112d8, type: 2}
-    - target: {fileID: 7249575154356097478, guid: c74e6af7cea93ad4d951a67afdac10e1, type: 3}
-      propertyPath: playerRange
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 7249575154356097478, guid: c74e6af7cea93ad4d951a67afdac10e1, type: 3}
-      propertyPath: nextWaypointDistance
-      value: 0.3
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: dfbf9683b22e099419b51159a68f0f7e, type: 2}
     - target: {fileID: 8680677287135258361, guid: c74e6af7cea93ad4d951a67afdac10e1, type: 3}
       propertyPath: m_Name
       value: PlaytestEnemy
@@ -6384,14 +6365,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 277860335211799290, guid: 4e5c98c9bd57b2542bcdbcd27dd9e205, type: 3}
-      propertyPath: spreadUI
-      value: 
-      objectReference: {fileID: 1218598129}
-    - target: {fileID: 277860335211799290, guid: 4e5c98c9bd57b2542bcdbcd27dd9e205, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 983013651674777843, guid: 4e5c98c9bd57b2542bcdbcd27dd9e205, type: 3}
       propertyPath: m_Name
       value: Player
@@ -6439,14 +6412,6 @@ PrefabInstance:
     - target: {fileID: 983013651674778376, guid: 4e5c98c9bd57b2542bcdbcd27dd9e205, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 983013652385204548, guid: 4e5c98c9bd57b2542bcdbcd27dd9e205, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9086231914131478926, guid: 4e5c98c9bd57b2542bcdbcd27dd9e205, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e5c98c9bd57b2542bcdbcd27dd9e205, type: 3}

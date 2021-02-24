@@ -18,7 +18,7 @@ MonoBehaviour:
   reloadTime: 5
   timeBetweenShots: 0
   bulletsPerBurstFire: 3
-  burstBulletDelay: 0.2
+  burstBulletDelay: 0.05
   burstDelayTime: 0.35
   roundsOfBurst: 3
   timeAfterBurst: 0

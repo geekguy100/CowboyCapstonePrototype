@@ -86,6 +86,12 @@ public class Weapon : MonoBehaviour
 
     // True if the weapon is being fired.
     private bool isFiring = false;
+
+    // How much damage this weapon does to other characters.
+    private int characterDamage;
+
+    // How much damage this weapon does to cover objects.
+    private int coverDamage;
     #endregion
 
 
@@ -112,6 +118,8 @@ public class Weapon : MonoBehaviour
         burstBulletDelay = weaponSettings.burstBulletDelay;
         burstDelayTime = weaponSettings.burstDelayTime;
         timeAfterBurst = weaponSettings.timeAfterBurst;
+        characterDamage = weaponSettings.characterDamage;
+        coverDamage = weaponSettings.coverDamage;
 
         ammoInMagazine = magazineSize;
         clipSize = ammoInMagazine;
@@ -221,7 +229,15 @@ public class Weapon : MonoBehaviour
                     //increase recoil time
                     recoilTime += recoilAmount;
 
-                    GameObject bullet = Instantiate(bulletPrefab, bulletOrigin.position, bulletRotation);
+                    KyleBullet bullet = Instantiate(bulletPrefab, bulletOrigin.position, bulletRotation).GetComponent<KyleBullet>();
+                    if (bullet == null)
+                    {
+                        Debug.Log(gameObject.name + " of parent " + transform.parent.name + " cannot fire a bullet bc there is no KyleBullet attached to it.");
+                        yield break;
+                    }
+
+                    bullet.Init(characterDamage, coverDamage); // Initialize the bullet to deal characterDamage to characters and coverDamage to cover objects.
+
                     Physics2D.IgnoreCollision(weaponHolder.GetComponent<Collider2D>(), bullet.GetComponent<Collider2D>());
 
                     --ammoInMagazine;
