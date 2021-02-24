@@ -50,6 +50,10 @@ MonoBehaviour:
   speed: 8
   bulletDeathTimer: 5
   collisionDetectionMode: 1
+  damage: 1
+  passedOverCover: 0
+  passingOverCover: 0
+  encounterCoverTimer: 0.2
 --- !u!212 &8328358008188989642
 SpriteRenderer:
   m_ObjectHideFlags: 0
