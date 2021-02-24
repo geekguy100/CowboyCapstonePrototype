@@ -15,12 +15,16 @@ public class ObstacleScript : MonoBehaviour
 
     public void TakeDamage(int damNum)
     {
-        health -= damNum;
-
-        if (health <= 0)
+        if (destructable)
         {
-            //insert particle system here
-            Destroy(gameObject);
+            health -= damNum;
+
+            if (health <= 0)
+            {
+                //insert particle system here
+                Destroy(gameObject);
+            }
         }
     }
+
 }
