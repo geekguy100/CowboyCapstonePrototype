@@ -17,6 +17,9 @@ MonoBehaviour:
   magazineSize: 15
   reloadTime: 3
   timeBetweenShots: 1.5
+  coverDamageMultipler: 0
+  characterDamage: 1
+  coverDamage: 1
   bulletsPerBurstFire: 1
   burstBulletDelay: 0
   burstDelayTime: 0

@@ -38,6 +38,13 @@ public class DuelistAI : EnemyAI
         weaponOne.Shoot(player.position, transform);
         yield return new WaitForSeconds(secondShotDelayTime);
         weaponTwo.Shoot(player.position, transform);
+        yield return new WaitForSeconds(secondShotDelayTime);
         shooting = false;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
     }
 }

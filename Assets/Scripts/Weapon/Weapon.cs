@@ -52,6 +52,12 @@ public class Weapon : MonoBehaviour
 
     // The time to wait after burst firing a weapon.
     private float timeAfterBurst;
+
+    // How much damage this weapon does to other characters.
+    private int characterDamage;
+
+    // How much damage this weapon does to cover objects.
+    private int coverDamage;
     #endregion
 
     #region ------- Serialized Fields - Data set in the inspector.
@@ -86,12 +92,6 @@ public class Weapon : MonoBehaviour
 
     // True if the weapon is being fired.
     private bool isFiring = false;
-
-    // How much damage this weapon does to other characters.
-    private int characterDamage;
-
-    // How much damage this weapon does to cover objects.
-    private int coverDamage;
     #endregion
 
 
