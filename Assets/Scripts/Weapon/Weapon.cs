@@ -7,6 +7,7 @@
 *****************************************************************************/
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class Weapon : MonoBehaviour
 {
@@ -94,8 +95,13 @@ public class Weapon : MonoBehaviour
     private bool isFiring = false;
     #endregion
 
+    public event Action OnMagazineEmpty;
 
-    void Start()
+    public event Action OnReloadStart;
+    public event Action OnReloadComplete;
+
+
+    void Awake()
     {
         if (weaponSettings == null)
         {
@@ -221,7 +227,7 @@ public class Weapon : MonoBehaviour
                     Quaternion bulletRotation = GetBulletRotation(targetPosition);
 
                     //get the adjustment value for setting the weapon's spread.
-                    float adjVal = Random.Range(-bloomValue, bloomValue);
+                    float adjVal = UnityEngine.Random.Range(-bloomValue, bloomValue);
 
                     //set the rotation of the shot, factoring in bloom.
                     bulletRotation *= Quaternion.AngleAxis(adjVal, Vector3.forward);
@@ -241,6 +247,10 @@ public class Weapon : MonoBehaviour
                     Physics2D.IgnoreCollision(weaponHolder.GetComponent<Collider2D>(), bullet.GetComponent<Collider2D>());
 
                     --ammoInMagazine;
+                }
+                else if (!reloading)
+                {
+                    OnMagazineEmpty?.Invoke();
                 }
 
                 yield return new WaitForSeconds(burstBulletDelay);
@@ -264,7 +274,9 @@ public class Weapon : MonoBehaviour
         if (reloading || ammoInMagazine == magazineSize)
             return;
 
+        print("RELOADING");
         reloading = true;
+        OnReloadStart?.Invoke();
         StartCoroutine(ReloadCoroutine());
     }
 
@@ -301,5 +313,11 @@ public class Weapon : MonoBehaviour
             ammoInMagazine = magazineSize;
 
         reloading = false;
+        OnReloadComplete?.Invoke();
+    }
+
+    public void UpdateTimeBetweenShots(float timeBetweenShots)
+    {
+        this.timeBetweenShots = timeBetweenShots;
     }
 }

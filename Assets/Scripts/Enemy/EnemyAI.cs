@@ -1,5 +1,6 @@
 using UnityEngine;
 using Pathfinding;
+using System;
 
 [RequireComponent(typeof(Seeker))]
 [RequireComponent(typeof(CharacterMovement))]
@@ -24,7 +25,8 @@ public abstract class EnemyAI : MonoBehaviour
     // The player.
     private Transform player;
 
-
+    // Invoked when the enemy is at their destination.
+    protected event Action OnPathfindingComplete;
 
 
     protected virtual void Awake()
@@ -56,7 +58,7 @@ public abstract class EnemyAI : MonoBehaviour
     /// </summary>
     void UpdatePath()
     {
-        if (seeker.IsDone())
+        if (seeker.IsDone() && target != null)
         {
             seeker.StartPath(transform.position, target.position, OnPathComplete);
         }
@@ -96,6 +98,7 @@ public abstract class EnemyAI : MonoBehaviour
             path = null;
             target = null;
             dir = Vector2.zero;     // Zero the enemy's direction of movement so it won't continue moving in its previous direction.
+            OnPathfindingComplete?.Invoke();
             return;
         }
 
@@ -111,7 +114,7 @@ public abstract class EnemyAI : MonoBehaviour
 
     protected abstract void PlayerRangeAction(Transform player);
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         characterMovement.Move(dir);
     }
