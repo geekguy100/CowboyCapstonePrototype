@@ -947,9 +947,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5222067232797791802, guid: c74e6af7cea93ad4d951a67afdac10e1, type: 3}
+      propertyPath: infiniteAmmo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5222067232797791802, guid: c74e6af7cea93ad4d951a67afdac10e1, type: 3}
       propertyPath: weaponSettings
       value: 
       objectReference: {fileID: 11400000, guid: ed3203c165a4b02438ecfe84414112d8, type: 2}
+    - target: {fileID: 5222067232797791802, guid: c74e6af7cea93ad4d951a67afdac10e1, type: 3}
+      propertyPath: ammoOnCharacter
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8680677287135258361, guid: c74e6af7cea93ad4d951a67afdac10e1, type: 3}
       propertyPath: m_Name
       value: PlaytestEnemy

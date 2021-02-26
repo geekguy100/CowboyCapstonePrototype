@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a657b7c29f08ef84d860dec1659196b3, type: 3}
+  m_Name: Grenade
+  m_EditorClassIdentifier: 
+  weaponName: Grenade
+  bulletPrefab: {fileID: 3305952765966720055, guid: e531cf33e40a6e44c9509e37b6b6d507, type: 3}
+  magazineSize: 15
+  reloadTime: 3
+  timeBetweenShots: 1.5
+  coverDamageMultipler: 0
+  characterDamage: 1
+  coverDamage: 1
+  bulletsPerBurstFire: 1
+  burstBulletDelay: 0
+  burstDelayTime: 0
+  roundsOfBurst: 0
+  timeAfterBurst: 0
+  bloomMod: 8
+  bloomValue: 1
+  maximumBloom: 2
