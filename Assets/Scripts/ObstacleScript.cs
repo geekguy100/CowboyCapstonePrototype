@@ -10,11 +10,19 @@ public class ObstacleScript : MonoBehaviour
     [Tooltip("The amount of health the object has")]
     public int health = 5;
 
+    //  public AudioClip Hit;
+    AudioSource Hit;
     //[Tooltip("The particle system to create when damaged or destroyed")]
     //public GameObject particleSystem;
+    public void Start()
+    {
+        Hit = GetComponent<AudioSource>();
+    }
+
 
     public void TakeDamage(int damNum)
     {
+        Hit.Play();
         if (destructable)
         {
             health -= damNum;
@@ -25,6 +33,7 @@ public class ObstacleScript : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+       // Hit.Play();
     }
 
 }

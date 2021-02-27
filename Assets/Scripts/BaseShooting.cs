@@ -76,6 +76,8 @@ public class BaseShooting : MonoBehaviour
     [Tooltip("The maxmimum amount of bloom")]
     public float maximumBloom = 3f;
 
+    public static AudioSource ReloadSound;
+
     public GameObject leftAimLine;
     public GameObject rightAimLine;
     private SpriteRenderer lal;
@@ -110,6 +112,9 @@ public class BaseShooting : MonoBehaviour
     public void Start()
     {
         bcu.UpdateCount(extraBulletCount);
+
+        ReloadSound = GetComponent<AudioSource>();
+
     }
 
     public void Update()
@@ -168,9 +173,24 @@ public class BaseShooting : MonoBehaviour
             shotPause = 0;
         }
 
+        if (Input.GetKeyDown(KeyCode.R) && bulletCount <= 5)
+        {
+            ReloadSound.Play();
+
+        }
+
+        if(bulletCount == 0)
+        {
+            print("Sound plays");
+          ReloadSound.Play();
+        
+        }
+
         //determine if reload needs to occur
         if (bulletCount == 0 && extraBulletCount > 0 || Input.GetKeyDown(KeyCode.R) && bulletCount < maxBulletCount && extraBulletCount > 0 || reloading)
         {
+           // ReloadSound.Play();
+
             ReloadWeapon();
 
             bcu.UpdateCount(extraBulletCount);
@@ -185,9 +205,12 @@ public class BaseShooting : MonoBehaviour
 
     public void ReloadWeapon()
     {
+      //  ReloadSound.Play();
         //check if reloading is occuring
         if (reloading == false)
         {
+           // ReloadSound.Play();
+
             //set reloading to occuring
             reloading = true;
 
@@ -196,6 +219,8 @@ public class BaseShooting : MonoBehaviour
         }
         else
         {
+           // ReloadSound.Play();
+
             //deduct time
             reloadTime -= Time.deltaTime;
             //if time is up

@@ -32,7 +32,7 @@ public class PlayerHealthUI : MonoBehaviour, IHealthUI
         playerHealth.OnHeal += IncreaseHealth;
     }
 
-
+   
 
 
     /// <summary>

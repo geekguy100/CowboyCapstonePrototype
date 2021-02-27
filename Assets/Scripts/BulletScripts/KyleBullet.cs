@@ -31,6 +31,7 @@ public class KyleBullet : MonoBehaviour
     public float encounterCoverTimer = .01f;
 
 
+
     public void Init(int characterDamage, int coverDamage)
     {
         this.characterDamage = characterDamage;
@@ -42,6 +43,7 @@ public class KyleBullet : MonoBehaviour
     private void Start()
     {
         Destroy(gameObject, destroyTime);
+       
     }
 
     private void Update()
