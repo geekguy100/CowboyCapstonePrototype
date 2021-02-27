@@ -12,7 +12,7 @@ public class BanditAI : EnemyAI
     [Tooltip("The weapon this bandit uses.")]
     [SerializeField] private Weapon weapon;
 
-    // The cover object used by this 
+    // The cover object used by this enemy.
     private Cover cover = null;
 
     protected override void Start()
