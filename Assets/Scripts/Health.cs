@@ -23,6 +23,8 @@ public class Health : MonoBehaviour
     public delegate void OnHealHandler(int currentHealth);
     public event OnHealHandler OnHeal;
 
+    AudioSource Hit;
+
     private void Awake()
     {
         currentHealth = maxHealth;
@@ -30,8 +32,11 @@ public class Health : MonoBehaviour
 
     private void Start()
     {
+
         //Make sure to update any UI that is keeping track of our health.
         OnHeal?.Invoke(currentHealth);
+
+        Hit = GetComponent<AudioSource>();
     }
 
     /// <summary>
@@ -40,6 +45,7 @@ public class Health : MonoBehaviour
     /// <param name="damage">The amount to decrease the current health by.</param>
     public void TakeDamage(int damage)
     {
+        Hit.Play();
         currentHealth -= damage;
         OnTakeDamage?.Invoke(damage);
         if (currentHealth <= 0)

@@ -6,6 +6,7 @@ public class BulletCollider : MonoBehaviour
 {
     public bool collisionDetectionMode = false;
 
+
     void OnTriggerEnter2D(Collider2D col)
     {
         //detect enemies
@@ -14,7 +15,7 @@ public class BulletCollider : MonoBehaviour
             switch (col.gameObject.tag)
             {
                 case "Enemy":
-
+                
                     break;
                     /*
                 case "Obstacle":

@@ -263,7 +263,7 @@ public class Weapon : MonoBehaviour
     {
         if (reloading || ammoInMagazine == magazineSize)
             return;
-
+        BaseShooting.ReloadSound.Play();
         reloading = true;
         StartCoroutine(ReloadCoroutine());
     }
