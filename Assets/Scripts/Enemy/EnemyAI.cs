@@ -28,6 +28,9 @@ public abstract class EnemyAI : MonoBehaviour
     // Invoked when the enemy is at their destination.
     protected event Action OnPathfindingComplete;
 
+    private bool isMoving = false;
+    protected bool IsMoving { get { return isMoving; } }
+
 
     protected virtual void Awake()
     {
@@ -48,6 +51,9 @@ public abstract class EnemyAI : MonoBehaviour
     /// <param name="target">The target to pathfind towards</param>
     protected void StartPathfinding(Transform target)
     {
+        if (!isMoving)
+            isMoving = true;
+
         this.target = target;
         CancelInvoke("UpdatePath");
         InvokeRepeating("UpdatePath", 0f, 0.5f);
@@ -79,12 +85,33 @@ public abstract class EnemyAI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates the enemy's target.
+    /// </summary>
+    /// <param name="target">The enemy's new target.</param>
+    protected void UpdateTarget(Transform target)
+    {
+        this.target = target;
+    }
+
     Vector2 dir;
+    private bool playerInRange = false;
     protected virtual void Update()
     {
+        #region --- Player In Range Actions ---
         // Perform unique action if player is in range (e.g. start shooting).
         if (player != null && Vector2.Distance(transform.position, player.position) < playerRange)
+        {
+            if (!playerInRange)
+                playerInRange = true;
             PlayerRangeAction(player);
+        }
+        else if (playerInRange)
+        {
+            playerInRange = false;
+            PlayerLeftRangeAction(player);
+        }
+        #endregion
 
         if (path == null || target == null)
             return;
@@ -98,6 +125,7 @@ public abstract class EnemyAI : MonoBehaviour
             path = null;
             target = null;
             dir = Vector2.zero;     // Zero the enemy's direction of movement so it won't continue moving in its previous direction.
+            isMoving = false;
             OnPathfindingComplete?.Invoke();
             return;
         }
@@ -113,6 +141,16 @@ public abstract class EnemyAI : MonoBehaviour
     }
 
     protected abstract void PlayerRangeAction(Transform player);
+    protected virtual void PlayerLeftRangeAction(Transform player) { }
+
+    /// <summary>
+    /// Returns true if the enemy has a path.
+    /// </summary>
+    /// <returns>True if the enemy has a path.</returns>
+    protected bool HasPath()
+    {
+        return (path != null);
+    }
 
     protected virtual void FixedUpdate()
     {

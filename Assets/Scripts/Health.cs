@@ -23,11 +23,18 @@ public class Health : MonoBehaviour
     public delegate void OnHealHandler(int currentHealth);
     public event OnHealHandler OnHeal;
 
+    [Tooltip("The amount of time after taking damage that must be wait before " +
+        "being able to take damage again.")]
+    [SerializeField] private float healthBufferTime;
+    private float currentHealthTime = 0f;
+
     AudioSource Hit;
 
     private void Awake()
     {
+        Hit = GetComponent<AudioSource>();
         currentHealth = maxHealth;
+        currentHealthTime = healthBufferTime;
     }
 
     private void Start()
@@ -35,8 +42,12 @@ public class Health : MonoBehaviour
 
         //Make sure to update any UI that is keeping track of our health.
         OnHeal?.Invoke(currentHealth);
+    }
 
-        Hit = GetComponent<AudioSource>();
+    private void Update()
+    {
+        if (currentHealthTime < healthBufferTime)
+            currentHealthTime += Time.deltaTime;
     }
 
     /// <summary>
@@ -45,11 +56,17 @@ public class Health : MonoBehaviour
     /// <param name="damage">The amount to decrease the current health by.</param>
     public void TakeDamage(int damage)
     {
-        Hit.Play();
-        currentHealth -= damage;
-        OnTakeDamage?.Invoke(damage);
-        if (currentHealth <= 0)
-            Die();
+        // Can only take damage if we've waited long enough.
+        if (currentHealthTime >= healthBufferTime)
+        {
+            currentHealthTime = 0;
+            //Hit.Play();
+            currentHealth -= damage;
+            OnTakeDamage?.Invoke(damage);
+            if (currentHealth <= 0)
+                Die();
+        }
+
     }
 
     /// <summary>

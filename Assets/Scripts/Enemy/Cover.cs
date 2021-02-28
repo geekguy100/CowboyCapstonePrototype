@@ -17,7 +17,7 @@ public class Cover : MonoBehaviour
         "when they want to hide behind this cover.")]
     [SerializeField] private Transform hidingSpot;
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         // Rescan the scene to update valid enemy paths.
         CoverHelper.OnCoverDestroyed();

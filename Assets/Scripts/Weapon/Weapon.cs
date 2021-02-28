@@ -100,6 +100,9 @@ public class Weapon : MonoBehaviour
     public event Action OnReloadStart;
     public event Action OnReloadComplete;
 
+    // A nearby crate. Used so we don't shoot over cover we're close to.
+    public GameObject coverToIgnore;
+
     void Awake()
     {
         if (weaponSettings == null)
@@ -180,7 +183,7 @@ public class Weapon : MonoBehaviour
         if (currentShotTime < timeBetweenShots || isFiring)
             return;
 
-        print(currentShotTime + " should be greater than " + timeBetweenShots + " to shoot...");
+        //print(currentShotTime + " should be greater than " + timeBetweenShots + " to shoot...");
         isFiring = true;
         StartCoroutine(ShootCoroutine(targetPosition, weaponHolder));
     }
@@ -244,6 +247,13 @@ public class Weapon : MonoBehaviour
                     bullet.Init(characterDamage, coverDamage); // Initialize the bullet to deal characterDamage to characters and coverDamage to cover objects.
 
                     Physics2D.IgnoreCollision(weaponHolder.GetComponent<Collider2D>(), bullet.GetComponent<Collider2D>());
+
+                    // If we have a cover to ignore, make sure to ignore collision with it.
+                    if (coverToIgnore != null)
+                    {
+                        foreach (Collider2D collider in coverToIgnore.GetComponents<Collider2D>())
+                            Physics2D.IgnoreCollision(collider, bullet.GetComponent<Collider2D>(), true);
+                    }
 
                     --ammoInMagazine;
                 }
@@ -314,6 +324,22 @@ public class Weapon : MonoBehaviour
         OnReloadComplete?.Invoke();
     }
 
+    /// <summary>
+    /// Gets the weapo's bullet prefab.
+    /// </summary>
+    /// <returns>he weapon's bullet prefab.</returns>
+    public GameObject GetBulletPrefab()
+    {
+        return bulletPrefab;
+    }
+
+    /// <summary>
+    /// Forcefully modified the weapon's timeBetweenShots. Used so I don't have 
+    /// to make unique weapons for the duelist, who's timeBetweenShots if often
+    /// lower than the weapon's original timeBetweenShots.
+    /// </summary>
+    /// <param name="timeBetweenShots">The weapon's new timeBetweenShots: the time 
+    /// that must be waited in between consecutive shots.</param>
     public void UpdateTimeBetweenShots(float timeBetweenShots)
     {
         this.timeBetweenShots = timeBetweenShots;

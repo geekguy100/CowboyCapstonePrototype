@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a657b7c29f08ef84d860dec1659196b3, type: 3}
   m_Name: Shotgun
   m_EditorClassIdentifier: 
-  weaponName: Pistol
+  weaponName: Shotgun
   bulletPrefab: {fileID: 7244148309967950905, guid: 02a7c86b3af3d364bb52108dbdbbf9f4, type: 3}
   magazineSize: 49
   reloadTime: 7

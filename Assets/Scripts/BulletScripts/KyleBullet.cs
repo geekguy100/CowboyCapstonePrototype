@@ -50,15 +50,15 @@ public class KyleBullet : MonoBehaviour
     {
         transform.position += transform.up * speed * Time.deltaTime;
 
-        if (!passingOverCover)
-        {
-            encounterCoverTimer -= Time.deltaTime;
+        //if (!passingOverCover)
+        //{
+        //    encounterCoverTimer -= Time.deltaTime;
 
-            if (encounterCoverTimer <= 0)
-            {
-                passedOverCover = true;
-            }
-        }
+        //    if (encounterCoverTimer <= 0)
+        //    {
+        //        passedOverCover = true;
+        //    }
+        //}
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -72,14 +72,14 @@ public class KyleBullet : MonoBehaviour
             health.TakeDamage(characterDamage);
             Destroy(gameObject);
         }
-        else if (obstacleScript != null && passedOverCover)
+        else if (obstacleScript != null /*&& passedOverCover*/)
         {
             obstacleScript.TakeDamage(coverDamage);
             Destroy(gameObject);
         }
-        else if (obstacleScript != null && !passedOverCover)
-        {
-            passingOverCover = true;
-        }
+        //else if (obstacleScript != null && !passedOverCover)
+        //{
+        //    passingOverCover = true;
+        //}
     }
 }
