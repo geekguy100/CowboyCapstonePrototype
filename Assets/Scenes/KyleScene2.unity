@@ -360,7 +360,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 462568117}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.0019999743, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 167028713}
@@ -1031,7 +1031,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAACQn+tjSKSfWAIAAAQFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VEtz2jAQ/iuMzoUx79JbC4TkkMeEdHLxRUhrrEGWPJIcIBn+e1eSjV06PVne79vdbx/SFxHKlsCcNhsj+KPmQH70yIPVBTgjmDeSb72WdQ8nutdqKz6hIb8L7nJPooHzSp3QaO8PvV8T6KfaS8+eTgbz8XTmsUqJTJtizfew1NZZRDMqLSBktPNRFJq+euSEn8loMJ8icsbzaJ7g6RNPi6R3wSMD5cC05KQmNrTIqhSTtCiBe/Etedywx5GmsKyakQx8SqalFLZWQ9y5DFW/0rOvmQuKBYbkkZ2D2OfOq+y6PmeZBVdLMvS8EgZbFWOSXzr2r6D2EHV9UFn5LLNJkBRjPv4D94cBzowu7pu0w8SncLlgB5TIqHWdvnbNq1Z5nMaRygPdSXjPQT3pjdGV4gg6U3nXysJo1f5eK1vmwA6tPUq9MVbl/2fja7iE4k9LKYpdaOQkGrZSh2YvPBkMDuYBBYfNsHUItHoVvy280X13hWrgThjrEKqrVF7eTlfGU8k69MxXU7mlNgqCuRZdgqLSnV8wjLud4A3WSXuD3FF/aerkNdZchRuXYG75SXIDvejjdVg218dHsPlz5aRQ0Ir2wBP2aamVigvW7Unjtq1MRlnHbV8J/vdqkeEMJvPRgn5fsMmCJdCfzUez8ZTzHUXXIZ+SsHtCYZ1UvkShdXtwaqoNrnDPfET/lvQ2hpZh2bmhx434LHSn5UJlessMgHqOEa7CwWASvJR8zQU2aAvOCRXmTb5SIjU7AE+vgdJQ6frkDE3bKCkpxYd23pKSZXgyUnIhlz9QSwMEFAAACAgAAJCf6wR5dIJtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTVUVBKL0osyCgGihiCOKWZKSB2tJKhWaqJuZFlooVlsollskGqrpm5kZmxaUpKUmJicqphiqlSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAJCf62NIpJ9YAgAABAUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAJCf6wR5dIJtAAAAeAAAAAkAJAAAAAAAAAAAAAAApQIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAABdAwAAAAA=
+    dataString: UEsDBBQAAAgIAACQn+vHbcOdZwIAABcFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1z2jAQ/SuMzg1jPozr3lpCSA75mNBOLr4Ia401yJJHHwGS4b93JdvYoVMuyPve7r59WvuTcGlqyK3Sa83Zo2JAfozIg1EVWM1zHyTfRj3rHo50p+SGf0BHfuPMlp5EA+eVWq4wfjPxeV2hn3InPDuej5NZvPCYk7xQulqxHSyVsQbRggoDCGllfRWJoc8ROeLffDpOYkROeJ4mEZ4+8JRGozMec5AWdE+OWmJHa1hO5oJWNTAvvifP4vEsxV+StFl9IKRJHLPNiMZx6tspIbhp5RF7qoMNm7oEDd4HxikOHQT5OUvgu9J63cPc56IwYFuRmp5uuUbzmqLkl2ocrajZN0rfqXC+zWIeRDU1H/+BbyYBLrSq7ru2k8i3sCXP96/0lFNjB04Pw7dfdTt5oGJPtwLeSpBPaq2VkwxBq51PdQamt/3jZbJlCfm+jzdSu2DX19X/vy4/xDlMf1wKXm2D8/MmsBEq2J16Mmi8mwdUHJbFtCUw6mX8MfCb7oZb1QJ3XBuLUDum9Pq2ymlPJatgmh/H2aXSEkK4HaUGSYU9vWAZe32FV9ig7RVyR/171DZvse7tuEoJ4Z4fRVfQizpcbsuU6vAIpnx2VnAJvWgPPKFPSyVls2FDT7q0jdMFzQdpO8fZ190ikwXMk2lKv6f5PM0juFkk08UsZmxLMXXCYhKWj0uck4qXRmhrD96a7ItLXDRf0X9eRmtN67DtTNPDmn9UamA5l4Xa5BpAPjcVLsJBYxN8L9mKcTRoA9ZyGe6bfGZEqHwPLLsUysKkq6PVNOurZKTm78r6SEaW4SuSkTM5/wVQSwMEFAAACAgAAJCf6wR5dIJtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTVUVBKL0osyCgGihiCOKWZKSB2tJKhWaqJuZFlooVlsollskGqrpm5kZmxaUpKUmJicqphiqlSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAJCf68dtw51nAgAAFwUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAJCf6wR5dIJtAAAAeAAAAAkAJAAAAAAAAAAAAAAAtAIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAABsAwAAAAA=
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -1103,7 +1103,7 @@ MonoBehaviour:
     seed: 0
     pivotPointRoot: {fileID: 0}
     spreadOutCount: 1
-  showGraphs: 0
+  showGraphs: 1
 --- !u!4 &882372256
 Transform:
   m_ObjectHideFlags: 0
@@ -1285,7 +1285,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1037392481}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.0019999892, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1981489239}
@@ -1355,7 +1355,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1188118939}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.0019999892, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2071262303}
@@ -1801,7 +1801,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1256612502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.0019999892, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 686741844}
@@ -2380,7 +2380,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1874806102}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1835104440}
@@ -6698,6 +6698,22 @@ PrefabInstance:
       propertyPath: weaponSettings
       value: 
       objectReference: {fileID: 11400000, guid: 6ba9461df4e871b42a99b2cdc96c5991, type: 2}
+    - target: {fileID: 7963100328504379104, guid: 28edc5526d7631b4fab5f903e43d3dd8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 926e98a6d6feff24f8deb8def8c715b3, type: 3}
+    - target: {fileID: 7963100328504379104, guid: 28edc5526d7631b4fab5f903e43d3dd8, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7963100328504379104, guid: 28edc5526d7631b4fab5f903e43d3dd8, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7963100328504379104, guid: 28edc5526d7631b4fab5f903e43d3dd8, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7963100328504379107, guid: 28edc5526d7631b4fab5f903e43d3dd8, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -6751,12 +6767,32 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7963100328504379119, guid: 28edc5526d7631b4fab5f903e43d3dd8, type: 3}
+      propertyPath: m_Size.x
+      value: 0.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 7963100328504379119, guid: 28edc5526d7631b4fab5f903e43d3dd8, type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7963100328504379119, guid: 28edc5526d7631b4fab5f903e43d3dd8, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7963100328504379119, guid: 28edc5526d7631b4fab5f903e43d3dd8, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7963100328504379119, guid: 28edc5526d7631b4fab5f903e43d3dd8, type: 3}
+      propertyPath: m_Direction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7963100328504379119, guid: 28edc5526d7631b4fab5f903e43d3dd8, type: 3}
       propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109681617865290831, guid: 28edc5526d7631b4fab5f903e43d3dd8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 8604772757261217121, guid: 28edc5526d7631b4fab5f903e43d3dd8, type: 3}
       propertyPath: weapon
