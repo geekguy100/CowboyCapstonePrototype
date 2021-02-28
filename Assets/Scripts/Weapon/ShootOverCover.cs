@@ -15,7 +15,6 @@ public class ShootOverCover : MonoBehaviour
         if (w != null)
         {
             w.coverToIgnore = transform.parent.gameObject;
-            print("IGNORING COLLISION.");
         }
  
     }
@@ -26,7 +25,6 @@ public class ShootOverCover : MonoBehaviour
         if (w != null)
         {
             w.coverToIgnore = null;
-            print("COLLISION BACK ON.");
         }
     }
 }
