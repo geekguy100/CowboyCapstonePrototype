@@ -101,7 +101,10 @@ public class Weapon : MonoBehaviour
     public event Action OnReloadComplete;
 
     // A nearby crate. Used so we don't shoot over cover we're close to.
-    public GameObject coverToIgnore;
+    [HideInInspector]public GameObject coverToIgnore;
+
+    [Tooltip("If this weapon is an enemy's weapon, bullets will not collide with other enemies.")]
+    [SerializeField] private bool isEnemyWeapon = false;
 
     void Awake()
     {
@@ -244,7 +247,7 @@ public class Weapon : MonoBehaviour
                         yield break;
                     }
 
-                    bullet.Init(characterDamage, coverDamage); // Initialize the bullet to deal characterDamage to characters and coverDamage to cover objects.
+                    bullet.Init(characterDamage, coverDamage, isEnemyWeapon); // Initialize the bullet to deal characterDamage to characters and coverDamage to cover objects.
 
                     Physics2D.IgnoreCollision(weaponHolder.GetComponent<Collider2D>(), bullet.GetComponent<Collider2D>());
 

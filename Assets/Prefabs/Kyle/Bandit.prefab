@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7385353598719448145}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bullet Origin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8577008486430153856}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.06, y: 1.331, z: 0}
+  m_LocalPosition: {x: -1.06, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8680677288443214792}
@@ -46,8 +46,8 @@ GameObject:
   - component: {fileID: 8680677287135258355}
   - component: {fileID: 8680677287135258364}
   - component: {fileID: 8680677287135258353}
-  m_Layer: 0
-  m_Name: PlaytestEnemy
+  m_Layer: 8
+  m_Name: Bandit
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,7 +109,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 926e98a6d6feff24f8deb8def8c715b3, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1
+  healthBufferTime: 0
 --- !u!114 &7249575154356097478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,8 +225,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.01}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.31, y: 2}
   m_Direction: 0
 --- !u!1 &8680677288443214793
 GameObject:
@@ -237,7 +238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8680677288443214792}
   - component: {fileID: 5222067232797791802}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,3 +276,5 @@ MonoBehaviour:
   bulletOrigin: {fileID: 7385353598719448145}
   ammoOnCharacter: 40
   infiniteAmmo: 0
+  coverToIgnore: {fileID: 0}
+  isEnemyWeapon: 1

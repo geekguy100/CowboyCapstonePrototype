@@ -18,6 +18,9 @@ public class KyleBullet : MonoBehaviour
     // The amount of damage this bullet does to cover.
     private int coverDamage = 1;
 
+    // If this bullet belongs to an enemy, it will not damage other enemies.
+    private bool isEnemyBullet = false;
+
     [Tooltip("Time the bullet will be destroyed without hitting anything.")]
     [SerializeField] private float destroyTime = 10f;
 
@@ -32,10 +35,11 @@ public class KyleBullet : MonoBehaviour
 
 
 
-    public void Init(int characterDamage, int coverDamage)
+    public void Init(int characterDamage, int coverDamage, bool isEnemyBullet)
     {
         this.characterDamage = characterDamage;
         this.coverDamage = coverDamage;
+        this.isEnemyBullet = isEnemyBullet;
     }
 
 
@@ -69,6 +73,13 @@ public class KyleBullet : MonoBehaviour
         //If what we collided with has a Health component, hurt it and destory the bullet.
         if (health != null)
         {
+            // Don't collide with an enemy 
+            if (isEnemyBullet && col.CompareTag("Enemy"))
+            {
+                Destroy(gameObject);
+                return;
+            }
+
             health.TakeDamage(characterDamage);
             Destroy(gameObject);
         }

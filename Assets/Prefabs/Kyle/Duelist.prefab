@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5515619485936957107}
   - component: {fileID: 5515619485936957106}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Weapon (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,6 +48,8 @@ MonoBehaviour:
   bulletOrigin: {fileID: 5515619486109309222}
   ammoOnCharacter: 40
   infiniteAmmo: 0
+  coverToIgnore: {fileID: 0}
+  isEnemyWeapon: 1
 --- !u!1 &5515619486109309221
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,7 +59,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5515619486109309222}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bullet Origin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +74,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5515619486109309221}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1, y: 1.331, z: 0}
+  m_LocalPosition: {x: 0.1, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5515619485936957107}
@@ -87,7 +89,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8271913445742998264}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bullet Origin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +104,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7183823379482589737}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.06, y: 1.331, z: 0}
+  m_LocalPosition: {x: -1.06, y: 0.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7836897270433832289}
@@ -118,7 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7836897270433832289}
   - component: {fileID: 6687059230702448787}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,6 +158,8 @@ MonoBehaviour:
   bulletOrigin: {fileID: 8271913445742998264}
   ammoOnCharacter: 40
   infiniteAmmo: 0
+  coverToIgnore: {fileID: 0}
+  isEnemyWeapon: 1
 --- !u!1 &7836897270802219088
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +176,7 @@ GameObject:
   - component: {fileID: 7836897270802219093}
   - component: {fileID: 7836897270802219096}
   - component: {fileID: 5515619487740256746}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Duelist
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -274,6 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1
+  healthBufferTime: 0
 --- !u!114 &7836897270802219098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,8 +341,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.01}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.31, y: 2}
   m_Direction: 0
 --- !u!114 &5515619487740256746
 MonoBehaviour:

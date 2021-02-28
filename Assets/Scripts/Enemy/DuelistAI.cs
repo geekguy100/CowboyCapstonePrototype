@@ -90,10 +90,16 @@ public class DuelistAI : EnemyAI
 
     private IEnumerator Shoot(Transform player)
     {
-        weaponOne.Shoot(player.position, transform);
+        if (player != null)
+            weaponOne.Shoot(player.position, transform);
+
         yield return new WaitForSeconds(secondShotDelayTime);
-        weaponTwo.Shoot(player.position, transform);
+
+        if (player != null)
+            weaponTwo.Shoot(player.position, transform);
+
         yield return new WaitForSeconds(secondShotDelayTime);
+
         shooting = false;
     }
 
