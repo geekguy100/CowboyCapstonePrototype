@@ -188,7 +188,7 @@ MonoBehaviour:
   staminaDecreaseMultiplier: 1
   staminaIncreaseMultiplier: 2.5
   movementReductionMultiplier: 0.5
-  rechargeWaitTime: 2
+  rechargeWaitTime: 1
 --- !u!114 &983013651674778383
 MonoBehaviour:
   m_ObjectHideFlags: 0
