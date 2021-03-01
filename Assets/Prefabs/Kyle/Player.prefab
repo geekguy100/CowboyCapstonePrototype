@@ -217,6 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 4
+  healthBufferTime: 1
 --- !u!114 &277860335211799290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,6 +440,8 @@ MonoBehaviour:
   bulletOrigin: {fileID: 9086231914250420450}
   ammoOnCharacter: 10
   infiniteAmmo: 0
+  coverToIgnore: {fileID: 0}
+  isEnemyWeapon: 0
 --- !u!114 &9086231914131478924
 MonoBehaviour:
   m_ObjectHideFlags: 0
