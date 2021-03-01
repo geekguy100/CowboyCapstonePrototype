@@ -2,13 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrenadeBullet : MonoBehaviour
+public class GrenadeBullet : Bullet
 {
-    [Tooltip("The travel speed of the bullet.")]
-    [SerializeField] private float speed = 5f;
-
-
-
     [Tooltip("End location of grenade")]
     [SerializeField] private Vector2 endLoc;
 

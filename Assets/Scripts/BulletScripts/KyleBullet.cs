@@ -7,20 +7,8 @@
 *****************************************************************************/
 using UnityEngine;
 
-public class KyleBullet : MonoBehaviour
+public class KyleBullet : Bullet
 {
-    [Tooltip("The travel speed of the bullet.")]
-    [SerializeField] private float speed = 5f;
-
-    // The damage the bullet inflicts.
-    private int characterDamage = 1;
-
-    // The amount of damage this bullet does to cover.
-    private int coverDamage = 1;
-
-    // If this bullet belongs to an enemy, it will not damage other enemies.
-    private bool isEnemyBullet = false;
-
     [Tooltip("Time the bullet will be destroyed without hitting anything.")]
     [SerializeField] private float destroyTime = 10f;
 
@@ -32,15 +20,6 @@ public class KyleBullet : MonoBehaviour
 
     [Tooltip("counts down the time before a bullet encounters cover")]
     public float encounterCoverTimer = .01f;
-
-
-
-    public void Init(int characterDamage, int coverDamage, bool isEnemyBullet)
-    {
-        this.characterDamage = characterDamage;
-        this.coverDamage = coverDamage;
-        this.isEnemyBullet = isEnemyBullet;
-    }
 
 
 

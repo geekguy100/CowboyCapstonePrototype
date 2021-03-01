@@ -240,7 +240,7 @@ public class Weapon : MonoBehaviour
                     //increase recoil time
                     recoilTime += recoilAmount;
 
-                    KyleBullet bullet = Instantiate(bulletPrefab, bulletOrigin.position, bulletRotation).GetComponent<KyleBullet>();
+                    Bullet bullet = Instantiate(bulletPrefab, bulletOrigin.position, bulletRotation).GetComponent<Bullet>();
                     if (bullet == null)
                     {
                         Debug.Log(gameObject.name + " of parent " + transform.parent.name + " cannot fire a bullet bc there is no KyleBullet attached to it.");
