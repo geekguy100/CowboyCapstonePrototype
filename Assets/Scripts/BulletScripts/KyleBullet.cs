@@ -76,18 +76,17 @@ public class KyleBullet : MonoBehaviour
             // Don't collide with an enemy 
             if (isEnemyBullet && col.CompareTag("Enemy"))
             {
-                Destroy(gameObject);
                 return;
             }
 
             health.TakeDamage(characterDamage);
-            Destroy(gameObject);
         }
         else if (obstacleScript != null /*&& passedOverCover*/)
         {
             obstacleScript.TakeDamage(coverDamage);
-            Destroy(gameObject);
         }
+
+        Destroy(gameObject);
         //else if (obstacleScript != null && !passedOverCover)
         //{
         //    passingOverCover = true;
