@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Shotgun
   bulletPrefab: {fileID: 7244148309967950905, guid: 02a7c86b3af3d364bb52108dbdbbf9f4, type: 3}
-  magazineSize: 49
+  magazineSize: 15
   reloadTime: 7
   timeBetweenShots: 2
   coverDamageMultipler: 0
   characterDamage: 1
   coverDamage: 1
-  bulletsPerBurstFire: 7
+  bulletsPerBurstFire: 5
   burstBulletDelay: 0
   burstDelayTime: 0
   roundsOfBurst: 0

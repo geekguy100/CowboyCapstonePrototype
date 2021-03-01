@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Grenade
   bulletPrefab: {fileID: 3305952765966720055, guid: e531cf33e40a6e44c9509e37b6b6d507, type: 3}
-  magazineSize: 15
+  magazineSize: 1
   reloadTime: 3
   timeBetweenShots: 1.5
   coverDamageMultipler: 0
   characterDamage: 1
-  coverDamage: 1
+  coverDamage: 99
   bulletsPerBurstFire: 1
   burstBulletDelay: 0
   burstDelayTime: 0

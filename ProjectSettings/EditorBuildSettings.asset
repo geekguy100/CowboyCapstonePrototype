@@ -14,7 +14,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Kyle Scene.unity
     guid: 104364db18d023c429cf0a414dbd3910
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/UnifiedScene.unity
     guid: 10d208063d9da6c4ca6f9facb3c7e506
+  - enabled: 1
+    path: Assets/Scenes/LinearLevel2.unity
+    guid: eb4ccad6c939672449c4f904aff3ce20
   m_configObjects: {}

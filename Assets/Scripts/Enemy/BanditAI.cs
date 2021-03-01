@@ -15,6 +15,19 @@ public class BanditAI : EnemyAI
     // The cover object used by this enemy.
     private Cover cover = null;
 
+    private void OnEnable()
+    {
+        weapon.OnMagazineEmpty += weapon.Reload;
+    }
+
+    private void OnDisable()
+    {
+        if (cover != null)
+            cover.OnCoverDestroyed -= FindNewCover;
+
+        weapon.OnMagazineEmpty -= weapon.Reload;
+    }
+
     protected override void Start()
     {
         base.Start();
@@ -55,9 +68,5 @@ public class BanditAI : EnemyAI
             Debug.LogWarning(gameObject.name + ": Cannot find anymore cover objects to go to!");
     }
 
-    private void OnDisable()
-    {
-        if (cover != null)
-            cover.OnCoverDestroyed -= FindNewCover;
-    }
+
 }

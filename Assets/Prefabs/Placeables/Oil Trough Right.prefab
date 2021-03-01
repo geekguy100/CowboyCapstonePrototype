@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 5680987060001177203}
   - component: {fileID: 1134233771977009127}
   - component: {fileID: 6305754692327567518}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: NearbyTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
