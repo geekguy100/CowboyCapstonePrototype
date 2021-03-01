@@ -111,7 +111,7 @@ public class BaseShooting : MonoBehaviour
 
     public void Start()
     {
-        bcu.UpdateCount(extraBulletCount);
+        //bcu.UpdateCount(extraBulletCount);
 
         ReloadSound = GetComponent<AudioSource>();
 
@@ -193,7 +193,7 @@ public class BaseShooting : MonoBehaviour
 
             ReloadWeapon();
 
-            bcu.UpdateCount(extraBulletCount);
+            //bcu.UpdateCount(extraBulletCount);
         }
 
         //adjust the bloom ui

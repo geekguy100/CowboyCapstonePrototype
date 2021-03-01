@@ -16,11 +16,10 @@ public class BulletPickup : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         
-        BaseShooting bs = col.GetComponentInChildren<BaseShooting>();
-        if (bs != null)
+        Weapon weapon = col.GetComponentInChildren<Weapon>();
+        if (weapon != null)
         {
-            bs.extraBulletCount += bulletCount;
-            bcui.IncreaseCount(bulletCount);
+            weapon.AddAmmoToCharacter(bulletCount);
             Destroy(gameObject);
         }
     }

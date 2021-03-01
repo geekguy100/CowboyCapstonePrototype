@@ -100,6 +100,10 @@ public class Weapon : MonoBehaviour
     public event Action OnReloadStart;
     public event Action OnReloadComplete;
 
+    public event Action OnAmmoPickup;
+
+    public event Action<int> OnWeaponFire;
+
     // A nearby crate. Used so we don't shoot over cover we're close to.
     [HideInInspector]public GameObject coverToIgnore;
 
@@ -259,6 +263,7 @@ public class Weapon : MonoBehaviour
                     }
 
                     --ammoInMagazine;
+                    OnWeaponFire?.Invoke(1);
                 }
                 else if (!reloading)
                 {
@@ -334,6 +339,27 @@ public class Weapon : MonoBehaviour
     public GameObject GetBulletPrefab()
     {
         return bulletPrefab;
+    }
+
+    public int GetMagSize()
+    {
+        return magazineSize;
+    }
+
+    public int GetClipSize()
+    {
+        return clipSize;
+    }
+
+    public int GetAmmoOnCharacter()
+    {
+        return ammoOnCharacter;
+    }
+
+    public void AddAmmoToCharacter(int amnt)
+    {
+        ammoOnCharacter += amnt;
+        OnAmmoPickup?.Invoke();
     }
 
     /// <summary>

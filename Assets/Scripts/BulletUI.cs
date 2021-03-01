@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class BulletUI : MonoBehaviour
 {
-    private int maxBullets = 0;
+    int maxBullets = 0;
     [SerializeField] private Sprite fullBulletSprite;
     [SerializeField] private Sprite emptyBulletSprite;
 
@@ -14,15 +14,37 @@ public class BulletUI : MonoBehaviour
     private List<Image> bulletList;
     private int lastFullIndex = 0; //The index of the last full (non-empty) bullet.
 
+    private Weapon playerWeapon;
+
 
 
     private void Awake()
     {
         initialBullet = transform.GetChild(0).gameObject.GetComponent<Image>();
 
-        IncreaseBullets(6);
+        playerWeapon = GameObject.Find("Player").GetComponentInChildren<Weapon>();
+
+        if (playerWeapon == null)
+        {
+            Debug.LogWarning(gameObject.name + ": Cannot update bullet UI bc there is no player weapon!");
+            Destroy(gameObject);
+            return;
+        }
+
+        playerWeapon.OnWeaponFire += DecreaseBullets;
+        playerWeapon.OnReloadComplete += () => { IncreaseBullets(playerWeapon.GetClipSize()); };
     }
 
+    private void OnDisable()
+    {
+        if (playerWeapon != null)
+            playerWeapon.OnWeaponFire -= DecreaseBullets;
+    }
+
+    private void Start()
+    {
+        IncreaseBullets(playerWeapon.GetMagSize());
+    }
 
 
 

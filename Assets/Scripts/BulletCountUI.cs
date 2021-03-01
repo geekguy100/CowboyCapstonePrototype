@@ -9,19 +9,29 @@ public class BulletCountUI : MonoBehaviour
     TextMeshProUGUI countText;
     private int lastCount;
 
+    Weapon playerWeapon;
+
     void Awake()
     {
         countText = GetComponent<TextMeshProUGUI>();
+        playerWeapon = GameObject.Find("Player").GetComponentInChildren<Weapon>();
+
+        if (playerWeapon == null)
+            return;
+
+        countText.text = playerWeapon.GetAmmoOnCharacter().ToString();
+        playerWeapon.OnReloadComplete += UpdateCount;
+        playerWeapon.OnAmmoPickup += UpdateCount;
     }
 
-    public void UpdateCount(int amount)
+    private void OnDisable()
     {
-        lastCount = amount;
-        countText.text = amount.ToString();
+        playerWeapon.OnReloadComplete -= UpdateCount;
+        playerWeapon.OnAmmoPickup -= UpdateCount;
     }
 
-    public void IncreaseCount(int amount)
+    void UpdateCount()
     {
-        countText.text = (amount + lastCount).ToString();
+        countText.text = playerWeapon.GetAmmoOnCharacter().ToString();
     }
 }
