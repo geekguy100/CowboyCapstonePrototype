@@ -12,6 +12,14 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scenes/LinearLevel.unity" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/BulletScripts/KyleBullet.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Assets/Scripts/BulletScripts/KyleBullet.cs" />
+      </list>
+    </option>
   </component>
   <component name="ProjectId" id="1p2XqfLhI0lVmR6r1dc0OxbmNAX" />
   <component name="ProjectViewState">
@@ -51,6 +59,7 @@
       <option name="presentableId" value="Default" />
       <updated>1614382351513</updated>
       <workItem from="1614382357435" duration="72000" />
+      <workItem from="1614564753547" duration="634000" />
     </task>
     <servers />
   </component>
@@ -64,7 +73,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
