@@ -240,6 +240,7 @@
               <e p="PlaytestEnemyBehaviour.cs" t="Include" />
               <e p="PlaytestEnemyPatrol.cs" t="Include" />
             </e>
+            <e p="ShotgunnerAI.cs" t="Include" />
           </e>
           <e p="ExplosionScript.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
@@ -255,6 +256,7 @@
           <e p="UIManager.cs" t="Include" />
           <e p="Weapon" t="Include">
             <e p="PlayerWeaponInput.cs" t="Include" />
+            <e p="ShootOverCover.cs" t="Include" />
             <e p="Weapon.cs" t="Include" />
             <e p="WeaponSettings.cs" t="Include" />
             <e p="WeaponSpreadUI.cs" t="Include" />
