@@ -12,6 +12,7 @@ public class MenuManager : MonoBehaviour
 {
     public GameObject mainPanel;
     public GameObject tutorialPanel1;
+    public GameObject tutorialPanel2;
 
     /// <summary>
     /// Loads the scene based on the scene's build index.
@@ -45,6 +46,14 @@ public class MenuManager : MonoBehaviour
     public void ReturnToMenu()
     {
         tutorialPanel1.SetActive(false);
+        tutorialPanel2.SetActive(false);
         mainPanel.SetActive(true);
+    }
+
+    public void DisplayTutorialPanel2()
+    {
+        tutorialPanel1.SetActive(false);
+        mainPanel.SetActive(false);
+        tutorialPanel2.SetActive(true);
     }
 }
