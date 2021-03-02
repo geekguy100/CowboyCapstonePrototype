@@ -32,7 +32,7 @@ public class BulletUI : MonoBehaviour
         }
 
         playerWeapon.OnWeaponFire += DecreaseBullets;
-        playerWeapon.OnReloadComplete += () => { IncreaseBullets(playerWeapon.GetClipSize()); };
+        playerWeapon.OnReloadComplete += () => { IncreaseBullets(playerWeapon.GetRefillAmount()); };
     }
 
     private void OnDisable()

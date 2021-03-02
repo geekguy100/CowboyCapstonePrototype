@@ -18,6 +18,6 @@ public class CharacterFlipWithMouse : CharacterFlipper
         mousePos.z = 0f;
 
         Vector3 direction = mousePos - transform.position;
-        base.CheckDirection(direction);
+        base.CheckDirection(direction.normalized);
     }
 }

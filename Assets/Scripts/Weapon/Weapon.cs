@@ -299,6 +299,7 @@ public class Weapon : MonoBehaviour
     /// <summary>
     /// Waits time reloadTime then updates the ammo in the magazine to 
     /// </summary>
+    int refillAmount;
     private IEnumerator ReloadCoroutine()
     {
         yield return new WaitForSeconds(reloadTime);
@@ -307,7 +308,7 @@ public class Weapon : MonoBehaviour
         {
             //How many bullets were shot. This should be the amount to refill the weapon with.
             int ammoTaken = clipSize - ammoInMagazine;
-            int refillAmount = ammoTaken;
+            refillAmount = ammoTaken;
 
             //If there are not enough bullets on standby to completely fill up the magazine, just use
             //whatever is on standby.
@@ -346,9 +347,9 @@ public class Weapon : MonoBehaviour
         return magazineSize;
     }
 
-    public int GetClipSize()
+    public int GetRefillAmount()
     {
-        return clipSize;
+        return refillAmount;
     }
 
     public int GetAmmoOnCharacter()

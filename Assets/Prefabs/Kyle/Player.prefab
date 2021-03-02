@@ -161,7 +161,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b37a3098ce1e8e143b5a3b6dc13fda1a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 892b20ad5795c274c94be1929e700296, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -187,7 +187,7 @@ MonoBehaviour:
   maxStamina: 15
   staminaDecreaseMultiplier: 1
   staminaIncreaseMultiplier: 2.5
-  movementReductionMultiplier: 0.5
+  movementReductionMultiplier: 0
   rechargeWaitTime: 1
 --- !u!114 &983013651674778383
 MonoBehaviour:
@@ -244,6 +244,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1036c3bd7e05bb4791bc7effd99cf08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: b37a3098ce1e8e143b5a3b6dc13fda1a, type: 3}
+  - {fileID: 21300000, guid: 892b20ad5795c274c94be1929e700296, type: 3}
+  - {fileID: 21300000, guid: 8f42029812c408d44a9df6574687a1ef, type: 3}
+  bulletOrigins: []
+  bulletOriginsPositions: []
 --- !u!50 &983013651674778381
 Rigidbody2D:
   serializedVersion: 4
@@ -282,7 +288,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.65625, y: 0}
-    oldSize: {x: 1.6, y: 2.5}
+    oldSize: {x: 1.54, y: 2.5}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -414,8 +420,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 983013652385204548}
   m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: -1.098, y: 1.355, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.46, y: 1.67, z: 0}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 9086231914250420450}
   - {fileID: 983013651885932475}
