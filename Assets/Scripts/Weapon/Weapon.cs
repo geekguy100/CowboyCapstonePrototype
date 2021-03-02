@@ -363,6 +363,11 @@ public class Weapon : MonoBehaviour
         OnAmmoPickup?.Invoke();
     }
 
+    public void ChangePosition(Vector2 pos)
+    {
+        transform.position = pos;
+    }
+
     /// <summary>
     /// Forcefully modified the weapon's timeBetweenShots. Used so I don't have 
     /// to make unique weapons for the duelist, who's timeBetweenShots if often

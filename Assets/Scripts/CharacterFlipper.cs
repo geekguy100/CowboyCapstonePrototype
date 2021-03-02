@@ -17,14 +17,15 @@ public class CharacterFlipper : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
-    [SerializeField] private Transform[] bulletOrigins;
-
-    [Tooltip("Organized in the order of RIGHT, DIAGONAL TOP RIGHT, DIAGONAL TOP LEFT, LEFT, DIAGONAL BOTTOM LEFT, DIAGONAL BOTTOM RIGHT.")]
+    [Tooltip("TOP RIGHT, BOTTOM RIGHT)")]
     [SerializeField] private Transform[] bulletOriginsPositions;
+
+    Weapon weapon;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        weapon = GetComponentInChildren<Weapon>();
     }
 
     /// <summary>
@@ -33,36 +34,29 @@ public class CharacterFlipper : MonoBehaviour
     /// <param name="dir">The direction the character should be facing.</param>
     public virtual void CheckDirection(Vector3 dir)
     {
-        print(dir);
         if ((dir.x > 0 && dir.y > 0) && directionFacing != DIRECTION.UPRIGHT)
-        { 
+        {
+            weapon.ChangePosition(bulletOriginsPositions[0].position);
             directionFacing = DIRECTION.UPRIGHT;
             ChangeSprite(sprites[1], true);
         }
         else if ((dir.x > 0 && dir.y < 0) && directionFacing != DIRECTION.DOWNRIGHT)
-        {           
+        {
+            weapon.ChangePosition(bulletOriginsPositions[1].position);
             directionFacing = DIRECTION.DOWNRIGHT;
             ChangeSprite(sprites[2], true);
         }
         else if ((dir.x < 0 && dir.y > 0) && directionFacing != DIRECTION.UPLEFT)
-        {          
+        {
+            weapon.ChangePosition(bulletOriginsPositions[0].position);
             directionFacing = DIRECTION.UPLEFT;
             ChangeSprite(sprites[1], false);
         }
         else if ((dir.x < 0 && dir.y < 0) && directionFacing != DIRECTION.DOWNLEFT)
-        {          
+        {
+            weapon.ChangePosition(bulletOriginsPositions[1].position);
             directionFacing = DIRECTION.DOWNLEFT;
             ChangeSprite(sprites[2], false);
-        }
-        else if ((dir.x > 0 && dir.y == 0) && directionFacing != DIRECTION.RIGHT)
-        {           
-            directionFacing = DIRECTION.RIGHT;
-            ChangeSprite(sprites[0], true);
-        }
-        else if ((dir.x < 0 && dir.y == 0) && directionFacing != DIRECTION.LEFT)
-        {           
-            directionFacing = DIRECTION.LEFT;
-            ChangeSprite(sprites[0], false);
         }
     }
 
