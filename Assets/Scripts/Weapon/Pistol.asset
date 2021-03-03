@@ -16,7 +16,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7244148309967950905, guid: 02a7c86b3af3d364bb52108dbdbbf9f4, type: 3}
   magazineSize: 15
   reloadTime: 3
-  timeBetweenShots: 0.5
+  timeBetweenShots: 0.75
   coverDamageMultipler: 0
   characterDamage: 1
   coverDamage: 1
