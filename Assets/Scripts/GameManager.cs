@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
         gameOver = true;
         //Destroy(playerHealth.gameObject); //Destroy the player game object.
         uiManager.OnGameOver();
-        StartCoroutine(LoadSceneAfterTime(4f,SceneManager.GetActiveScene().buildIndex)); //TODO: reload the current scene.
+       // StartCoroutine(LoadSceneAfterTime(4f,SceneManager.GetActiveScene().buildIndex)); //TODO: reload the current scene.
     }
 
     /// <summary>
@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
         gameOver = true;
         print("Game is over!");
         uiManager.OnGameWin();
-        StartCoroutine(LoadSceneAfterTime(4f,MENU_INDEX));
+        //StartCoroutine(LoadSceneAfterTime(4f,MENU_INDEX));
     }
 
     /// <summary>
@@ -91,5 +91,19 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene(MENU_INDEX);
         }
+    }
+
+    /// <summary>
+    /// Loads a scene by name.
+    /// </summary>
+    /// <param name="name">The scene's name.</param>
+    public void LoadScene(string name)
+    {
+        SceneManager.LoadScene(name);
+    }
+
+    public void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
