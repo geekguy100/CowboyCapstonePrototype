@@ -197,7 +197,7 @@ public class Weapon : MonoBehaviour
     public void Shoot(Vector3 targetPosition, Transform weaponHolder)
     {
         // Taking rate of fire into account.
-        if (currentShotTime < timeBetweenShots || isFiring)
+        if (currentShotTime < timeBetweenShots || isFiring || reloading)
             return;
 
         //print(currentShotTime + " should be greater than " + timeBetweenShots + " to shoot...");
