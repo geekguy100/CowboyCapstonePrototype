@@ -28,3 +28,5 @@ MonoBehaviour:
   bloomMod: 6
   bloomValue: 8
   maximumBloom: 3
+  shootingSound: {fileID: 8300000, guid: 1919ea30f42814c42acb1d43d0c3e051, type: 3}
+  reloadingSound: {fileID: 8300000, guid: b7e938d14029dae45a0999770cce383f, type: 3}

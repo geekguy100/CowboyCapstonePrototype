@@ -77,4 +77,12 @@ public class WeaponSettings : ScriptableObject
 
     [Tooltip("The maximum amount of bloom.")] 
     public float maximumBloom = 3f;
+
+    [Header("Misc.")]
+
+    [Tooltip("The sound to play when the weapon is fired.")]
+    public AudioClip shootingSound;
+
+    [Tooltip("The sound to play when the weapon is reloaded.")]
+    public AudioClip reloadingSound;
 }

@@ -9,6 +9,7 @@ using UnityEngine;
 using System.Collections;
 using System;
 
+[RequireComponent(typeof(AudioSource))]
 public class Weapon : MonoBehaviour
 {
     #region ------- Weapon Settings - Data obtained from WeaponSettings scriptable object.
@@ -93,6 +94,11 @@ public class Weapon : MonoBehaviour
 
     // True if the weapon is being fired.
     private bool isFiring = false;
+
+    private AudioSource audioSource;
+
+    private AudioClip reloadClip;
+    private AudioClip shootClip;
     #endregion
 
     public event Action OnMagazineEmpty;
@@ -135,10 +141,14 @@ public class Weapon : MonoBehaviour
         timeAfterBurst = weaponSettings.timeAfterBurst;
         characterDamage = weaponSettings.characterDamage;
         coverDamage = weaponSettings.coverDamage;
+        reloadClip = weaponSettings.reloadingSound;
+        shootClip = weaponSettings.shootingSound;
 
         ammoInMagazine = magazineSize;
         clipSize = ammoInMagazine;
         currentShotTime = timeBetweenShots;
+
+        audioSource = GetComponent<AudioSource>();
 
         // Updating the actual game object's name to that of the given weapon name.
         gameObject.name = weaponName;
@@ -229,6 +239,9 @@ public class Weapon : MonoBehaviour
 
         do
         {
+            if (ammoInMagazine > 0)
+                audioSource.PlayOneShot(shootClip);
+
             for (int j = 0; j < bulletsPerBurstFire; ++j)
             {
                 if (ammoInMagazine > 0)
@@ -302,6 +315,9 @@ public class Weapon : MonoBehaviour
     int refillAmount;
     private IEnumerator ReloadCoroutine()
     {
+        if (ammoOnCharacter > 0 && reloadClip != null)
+            audioSource.PlayOneShot(reloadClip);
+
         yield return new WaitForSeconds(reloadTime);
 
         if (!infiniteAmmo)

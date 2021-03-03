@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponName: Shotgun
   bulletPrefab: {fileID: 7244148309967950905, guid: 02a7c86b3af3d364bb52108dbdbbf9f4, type: 3}
   magazineSize: 15
-  reloadTime: 7
+  reloadTime: 5.5
   timeBetweenShots: 2
   coverDamageMultipler: 0
   characterDamage: 1
@@ -28,3 +28,5 @@ MonoBehaviour:
   bloomMod: 8
   bloomValue: 2
   maximumBloom: 3
+  shootingSound: {fileID: 8300000, guid: 2de04982ffec2734c9d15603f2e68088, type: 3}
+  reloadingSound: {fileID: 8300000, guid: 579ef30ba8edbb8458287db2142cf8f1, type: 3}
