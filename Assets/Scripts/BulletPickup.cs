@@ -17,7 +17,7 @@ public class BulletPickup : MonoBehaviour
     {
         
         Weapon weapon = col.GetComponentInChildren<Weapon>();
-        if (weapon != null)
+        if (weapon != null && col.CompareTag("Player"))
         {
             weapon.AddAmmoToCharacter(bulletCount);
             Destroy(gameObject);

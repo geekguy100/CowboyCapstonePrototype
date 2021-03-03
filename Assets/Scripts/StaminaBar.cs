@@ -39,7 +39,6 @@ public class StaminaBar : MonoBehaviour
             slider.maxValue = maxV;
 
         slider.value = v;
-        print(v);
         if (v <= lowEnergy && !lowEnergyText.activeSelf)
             lowEnergyText.SetActive(true);
         else if (v > lowEnergy && lowEnergyText.activeSelf)
