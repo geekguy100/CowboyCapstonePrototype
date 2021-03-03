@@ -248,7 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxStamina: 15
   staminaDecreaseMultiplier: 1
-  staminaIncreaseMultiplier: 2.5
+  staminaIncreaseMultiplier: 4
   movementReductionMultiplier: 0
   rechargeWaitTime: 1
 --- !u!114 &983013651674778383
