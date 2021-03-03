@@ -28,11 +28,11 @@ public class Health : MonoBehaviour
     [SerializeField] private float healthBufferTime;
     private float currentHealthTime = 0f;
 
-    AudioSource Hit;
+    AudioSource audioSource;
 
     private void Awake()
     {
-        Hit = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         currentHealth = maxHealth;
         currentHealthTime = healthBufferTime;
     }
@@ -59,6 +59,9 @@ public class Health : MonoBehaviour
         // Can only take damage if we've waited long enough.
         if (currentHealthTime >= healthBufferTime)
         {
+            if (audioSource != null)
+                audioSource.Play();
+
             currentHealthTime = 0;
             //Hit.Play();
             currentHealth -= damage;
