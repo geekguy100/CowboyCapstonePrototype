@@ -7,6 +7,12 @@ public class StaminaBar : MonoBehaviour
 
     private PlayerInputController playerInput;
 
+    [Tooltip("Text that displays 'low energy' when the player is low on stamina.")]
+    [SerializeField] private GameObject lowEnergyText;
+
+    // How much stamina the player needs until low-energy pops up.
+    private float lowEnergy = 3;
+
     private void Awake()
     {
         slider = GetComponent<Slider>();
@@ -33,5 +39,10 @@ public class StaminaBar : MonoBehaviour
             slider.maxValue = maxV;
 
         slider.value = v;
+        print(v);
+        if (v <= lowEnergy && !lowEnergyText.activeSelf)
+            lowEnergyText.SetActive(true);
+        else if (v > lowEnergy && lowEnergyText.activeSelf)
+            lowEnergyText.SetActive(false);
     }
 }
