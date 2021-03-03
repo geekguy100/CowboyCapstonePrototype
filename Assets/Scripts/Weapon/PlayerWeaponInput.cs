@@ -28,7 +28,6 @@ public class PlayerWeaponInput : MonoBehaviour
     private void Update()
     {
 
-
         Vector3 mousePos;
 
 

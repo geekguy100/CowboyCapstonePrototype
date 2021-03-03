@@ -278,7 +278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebae723ffb1d6754e9d0f997ba1d838e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 4
+  maxHealth: 5
   healthBufferTime: 1
 --- !u!114 &277860335211799290
 MonoBehaviour:
@@ -506,10 +506,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 752a59bc26e51de4585fc2999447ad4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponSettings: {fileID: 11400000, guid: 9a4345ac0164c044d98fec5a6e891df7, type: 2}
+  weaponSettings: {fileID: 11400000, guid: 25ab299f3f96ce348a65bf30552203d8, type: 2}
   bulletOrigin: {fileID: 9086231914250420450}
-  ammoOnCharacter: 10
+  ammoOnCharacter: 12
   infiniteAmmo: 0
+  reloadText: {fileID: 0}
   coverToIgnore: {fileID: 0}
   isEnemyWeapon: 0
 --- !u!114 &9086231914131478924

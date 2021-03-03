@@ -71,6 +71,8 @@ public class Weapon : MonoBehaviour
 
     [Tooltip("True if this weapon should have infinite ammo.")]
     [SerializeField] private bool infiniteAmmo = false;
+
+    [SerializeField] private GameObject reloadText;
     #endregion
 
     #region ------- Internal Data - Private fields used by the weapon to keep track of shot time, ammo, etc.
@@ -277,6 +279,10 @@ public class Weapon : MonoBehaviour
 
                     --ammoInMagazine;
                     OnWeaponFire?.Invoke(1);
+
+                    if (ammoInMagazine <= 0 && reloadText != null)
+                        reloadText.SetActive(true);
+
                 }
                 else if (!reloading)
                 {
@@ -340,6 +346,9 @@ public class Weapon : MonoBehaviour
             ammoInMagazine += refillAmount;
 
             clipSize = ammoInMagazine;
+
+            if (clipSize > 0 && reloadText != null)
+                reloadText.SetActive(false);
         }
         // If the weapon has infinite ammo, just set its ammo count to the magazine size.
         else
