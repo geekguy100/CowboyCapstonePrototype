@@ -17,11 +17,22 @@ public class Cover : MonoBehaviour
         "when they want to hide behind this cover.")]
     [SerializeField] private Transform hidingSpot;
 
+    private bool appQuitting = false;
+
+    private void Awake()
+    {
+        Application.quitting += () => { appQuitting = true; };
+    }
+
     private void OnDestroy()
     {
-        // Rescan the scene to update valid enemy paths.
-        CoverHelper.OnCoverDestroyed();
-        OnCoverDestroyed?.Invoke();
+        // Don't call all this stuff if the player is quitting the application.
+        if (!appQuitting)
+        {
+            // Rescan the scene to update valid enemy paths.
+            CoverHelper.OnCoverDestroyed();
+            OnCoverDestroyed?.Invoke();
+        }
     }
 
     /// <summary>

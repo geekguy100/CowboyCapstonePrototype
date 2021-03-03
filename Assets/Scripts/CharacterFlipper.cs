@@ -9,7 +9,7 @@ using UnityEngine;
 
 public class CharacterFlipper : MonoBehaviour
 {
-    [Tooltip("Sprites are organized in the order of RIGHT, DIAGONAL TOP RIGHT, and DIAGONAL BOTTOM RIGHT.")]
+    [Tooltip("Sprites are organized in the order of LEFT, DIAGONAL TOP RIGHT, and DIAGONAL BOTTOM RIGHT.")]
     [SerializeField] private Sprite[] sprites;
 
     public enum DIRECTION { RIGHT, LEFT, UPRIGHT, UPLEFT, DOWNRIGHT, DOWNLEFT, UPDOWN};
