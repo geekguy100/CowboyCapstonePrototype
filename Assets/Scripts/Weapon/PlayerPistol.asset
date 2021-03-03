@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponName: Pistol
   bulletPrefab: {fileID: 7244148309967950905, guid: 02a7c86b3af3d364bb52108dbdbbf9f4, type: 3}
   magazineSize: 6
-  reloadTime: 3
+  reloadTime: 1.25
   timeBetweenShots: 0.25
   coverDamageMultipler: 0
   characterDamage: 1
