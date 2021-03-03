@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     private static bool gameOver = false;
     public static bool GameOver { get { return gameOver; } }
 
+    public static bool exitingScene = false;
+
     private void Start()
     {
         //Subscribing to the OnDeath event, so OnPlayerDeath will run when the player dies.
@@ -89,6 +91,7 @@ public class GameManager : MonoBehaviour
         //Load the menu on ESC key press.
         if (Input.GetButtonDown("Cancel"))
         {
+            exitingScene = true;
             SceneManager.LoadScene(MENU_INDEX);
         }
     }
@@ -99,11 +102,13 @@ public class GameManager : MonoBehaviour
     /// <param name="name">The scene's name.</param>
     public void LoadScene(string name)
     {
+        exitingScene = true;
         SceneManager.LoadScene(name);
     }
 
     public void RestartScene()
     {
+        exitingScene = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

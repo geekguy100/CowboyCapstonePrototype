@@ -27,7 +27,7 @@ public class Cover : MonoBehaviour
     private void OnDestroy()
     {
         // Don't call all this stuff if the player is quitting the application.
-        if (!appQuitting)
+        if (!appQuitting && !GameManager.exitingScene)
         {
             // Rescan the scene to update valid enemy paths.
             CoverHelper.OnCoverDestroyed();
